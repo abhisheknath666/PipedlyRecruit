@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pipedlyapp.models import Poll, Choice
+from pipedlyapp.models import Poll, Choice, LinkedinProfile
 
 class ChoiceInline(admin.StackedInline):
     model = Choice
@@ -13,4 +13,8 @@ class PollAdmin(admin.ModelAdmin):
 
     inlines = [ChoiceInline]
 
+class LinkedinAdmin(admin.ModelAdmin):
+    fields = ['first_name', 'last_name', 'url']
+
 admin.site.register(Poll, PollAdmin)
+admin.site.register(LinkedinProfile, LinkedinAdmin)

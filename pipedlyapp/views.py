@@ -1,10 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from pipedlyapp.models import Poll
+from pipedlyapp.models import Poll, LinkedinProfile
 
 import httplib, urllib, urllib2
 import hashlib
 import json
+import xml.etree.ElementTree as ET
 
 LN_CLIENT_ID = "755uojkm0y48vy"
 LN_CLIENT_SECRET = "2aXh3DWAJEIYsxbc"
@@ -28,25 +29,42 @@ class lnWrapper(object):
         cls.expiration_duration = ""
 
     @classmethod
-    def grab_people(cls):
+    def grab_people(cls,request):
         """
         Make an api call to linkedin to retreive users matching the criteria we need
         """
         if cls.access_token=="":
             return HttpResponse("Need a new access token")
-        params = urllib.urlencode({ 'oauth2_access_token': cls.access_token})
+        params = urllib.urlencode({ 'oauth2_access_token': cls.access_token,
+                                    })
 
-        url_string = "https://api.linkedin.com/v1/people-search?"+params
-        # url_string = "https://api.linkedin.com/v1/people/~/connections?"+params
+        # url_string = "https://api.linkedin.com/v1/people-search?"+params
+        url_string = "https://api.linkedin.com/v1/people/~/connections?"+params
         print url_string
         connection = urllib.urlopen(url_string)
 
         response = connection.read()
-
         print str(response)
+        connections_xml = ET.fromstring(str(response))
+        print connections_xml
+        useful_details = ""
+        for person in connections_xml.iter('person'):
+            first_name = person.find('first-name').text
+            last_name = person.find('last-name').text
+            api_profile = person.findall('./api-standard-profile-request')
+            if len(api_profile)>0:
+                url = api_profile[0].find('url').text
+                ln_profile = LinkedinProfile(first_name=first_name,last_name=last_name,url=url)
+                ln_profile.save()
+                useful_details += "\nFirst name: "+first_name+" Last name: "+last_name+" Url: "+url
+        grabbed_people = LinkedinProfile.objects.all()
+        context = {'grabbed_people': grabbed_people}
+        return render(request, 'pipedly/index.html', context)
 
-        return HttpResponse(str(response))
-
+    @classmethod
+    def filter_people(cls, key_words):
+        print key_words
+        return LinkedinProfile.objects.all()
 
 def ln_init(request,poll_id):
     """
@@ -102,4 +120,15 @@ def on_ln_authentication_response(request):
     return HttpResponse("Authorization Failure!")
 
 def grab_people(request):
-    return lnWrapper.grab_people()
+    return lnWrapper.grab_people(request)
+
+def filter_people(request):
+    """
+    filter people on some keywords
+    """
+    keywords = request.GET.get('keywords')
+    filtered_list = lnWrapper.filter_people(keywords)
+    response = ""
+    for person in filtered_list:
+        response = response+" "+str(person)
+    return HttpResponse(response)

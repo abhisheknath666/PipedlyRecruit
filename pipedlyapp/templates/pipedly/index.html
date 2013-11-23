@@ -4,6 +4,12 @@
         <li><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a></li>
     {% endfor %}
     </ul>
-{% else %}
-    <p>No polls are available.</p>
+{% endif %}
+
+{% if grabbed_people %}
+    <ul>
+    {% for profile in grabbed_people %}
+        <li><a href="/ln_profile/{{ profile.id }}/">{{ profile.first_name }}</a></li>
+    {% endfor %}
+    </ul>
 {% endif %}
