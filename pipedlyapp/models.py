@@ -25,3 +25,6 @@ class LinkedinProfile(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
+
+    class Meta:
+        unique_together = ("first_name", "last_name")

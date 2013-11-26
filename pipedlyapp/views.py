@@ -15,27 +15,35 @@ def index(request):
     context = {'latest_poll_list': latest_poll_list}
     return render(request, 'pipedly/index.html', context)
 
+class Singleton(type):
+    """
+    Metaclass that defines a singleton
+    """
+    _classes = {}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._classes:
+            cls._classes[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._classes[cls]
+
 class lnWrapper(object):
-    access_token = ""
-    expiration_duration = ""
-    state = ""
+    __metaclass__ = Singleton
     def __init__(self):
         # class init
-        pass
+        access_token = ""
+        expiration_duration = ""
+        state = ""
 
-    @classmethod
-    def reset_token(cls):
-        cls.access_token = ""
-        cls.expiration_duration = ""
+    def reset_token(self):
+        self.access_token = ""
+        self.expiration_duration = ""
 
-    @classmethod
-    def grab_people(cls,request):
+    def grab_people(self,request):
         """
         Make an api call to linkedin to retreive users matching the criteria we need
         """
-        if cls.access_token=="":
+        if self.access_token=="":
             return HttpResponse("Need a new access token")
-        params = urllib.urlencode({ 'oauth2_access_token': cls.access_token,
+        params = urllib.urlencode({ 'oauth2_access_token': self.access_token,
                                     })
 
         # url_string = "https://api.linkedin.com/v1/people-search?"+params
@@ -54,19 +62,23 @@ class lnWrapper(object):
             api_profile = person.findall('./api-standard-profile-request')
             if len(api_profile)>0:
                 url = api_profile[0].find('url').text
-                ln_profile = LinkedinProfile(first_name=first_name,last_name=last_name,url=url)
-                ln_profile.save()
+                LinkedinProfile.objects.get_or_create(first_name=first_name,last_name=last_name,url=url)
                 useful_details += "\nFirst name: "+first_name+" Last name: "+last_name+" Url: "+url
         grabbed_people = LinkedinProfile.objects.all()
         context = {'grabbed_people': grabbed_people}
         return render(request, 'pipedly/index.html', context)
 
-    @classmethod
-    def filter_people(cls, key_words):
-        print key_words
-        return LinkedinProfile.objects.all()
+    def filter_people(self, key_words):
+        """
+        Filter based on list of keywords
+        """
+        if len(key_words)==0:
+            return LinkedinProfile.objects.all()
 
-def ln_init(request,poll_id):
+        # for profile in LinkedinProfile.objects.all():
+
+
+def ln_init(request):
     """
     Starts linked in authorization process
     """
@@ -74,8 +86,8 @@ def ln_init(request,poll_id):
     # Grab the access token from linkedln
 
     state = hashlib.sha224("access_token").hexdigest()
-    lnWrapper.state = state
-    lnWrapper.reset_token()
+    lnWrapper().state = state
+    lnWrapper().reset_token()
     params = urllib.urlencode({ 'response_type' : "code",
                                 'client_id' : LN_CLIENT_ID,
                                 'state' : state,
@@ -113,21 +125,22 @@ def on_ln_authentication_response(request):
     access_token = responseJson.get('access_token', '')
     if expiration_duration>0 and access_token!='':
         print "Access token: "+str(access_token)+" Expiration: "+str(expiration_duration/60/60/24)
-        lnWrapper.access_token = access_token
-        lnWrapper.expiration_duration = expiration_duration
+        lnWrapper().access_token = access_token
+        lnWrapper().expiration_duration = expiration_duration
         return HttpResponse("Authorization success!")
 
     return HttpResponse("Authorization Failure!")
 
 def grab_people(request):
-    return lnWrapper.grab_people(request)
+    return lnWrapper().grab_people(request)
 
 def filter_people(request):
     """
     filter people on some keywords
     """
     keywords = request.GET.get('keywords')
-    filtered_list = lnWrapper.filter_people(keywords)
+    keywords_list = keywords.split(' ')
+    filtered_list = lnWrapper().filter_people(keywords_list)
     response = ""
     for person in filtered_list:
         response = response+" "+str(person)
