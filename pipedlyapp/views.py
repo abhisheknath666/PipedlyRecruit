@@ -115,12 +115,16 @@ class lnWrapper(object):
         Eventually we'll want to do this on another thread
         """
         profile_url = profile_url.replace("http","https")
-        # print profile_url        
+        # print profile_url
         connection = urllib.urlopen(profile_url)
         response = connection.read()
-        # print str(response)
+        response_xml = ET.fromstring(str(response))
+        headline = response_xml.find('./headline')
+        headline_text = ""
+        if headline:
+            headline_text = headline.text
         for keyword in key_words:
-            if response.find(keyword)!=-1:
+            if headline_text.find(keyword)!=-1:
                 return True
         return False
 
