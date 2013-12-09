@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from pipedlyapp.models import Poll, LinkedinProfile
+from scrapinghub import Connection
 
 import httplib, urllib, urllib2
 import hashlib
@@ -197,3 +198,53 @@ def filter_people(request):
     for person in filtered_list:
         response = response+" "+str(person)
     return HttpResponse(response)
+
+# Web scraper
+
+class ScrapinghubWrapper:
+    __metaclass__=Singleton
+
+    def __init__(self):
+        self._api_key = "21822bba597f4d379d25953ba3202dfa"
+        self._conn = Connection(self._api_key)
+        self._cur_jobs = {}
+
+    @property
+    def api_key(self):
+        return self._api_key
+
+    def start_scheduled_job(self, spider_name):
+        projects = self._conn.project_ids()
+        if len(projects)<=0:
+            return
+        project = self._conn[projects[0]]
+        if self._cur_jobs.has_key(spider_name):
+            return False
+        job_id = project.schedule(spider_name)
+        if job_id!='':
+            self._cur_jobs[spider_name] = project.job(job_id)
+            return True
+        return False
+
+    def list_items(self, spider_name):
+        if self._cur_jobs.has_key(spider_name):
+            job = self._cur_jobs[spider_name]
+            if job:
+                return str(job.items())
+        return ""
+
+def start_scraping_job(request):
+    """
+    start a scraphub job
+    """
+    spider_name = request.GET.get('spider_name')
+    if ScrapinghubWrapper().start_scheduled_job(spider_name):
+        return HttpResponse("Success!")
+    return HttpResponse("Could not start job.")
+
+def list_scraped_items(request):
+    """
+    list the scrapped items for a finished job
+    """
+    spider_name = request.GET.get('spider_name')
+    return HttpResponse(ScrapinghubWrapper().list_items(spider_name))
