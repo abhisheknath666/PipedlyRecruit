@@ -13,3 +13,11 @@
     {% endfor %}
     </ul>
 {% endif %}
+
+{% if scraped_items %}
+    <ul>
+    {% for item in scraped_items %}
+        <li><a href="/scraped_items/{{ item.id }}/">{{ item.item }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}

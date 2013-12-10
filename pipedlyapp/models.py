@@ -28,3 +28,9 @@ class LinkedinProfile(models.Model):
 
     class Meta:
         unique_together = ("first_name", "last_name")
+
+class ScrapinghubItem(models.Model):
+    def __unicode__(self):
+        return self.spider_name
+    spider_name = models.CharField(max_length=30)
+    item = models.TextField()

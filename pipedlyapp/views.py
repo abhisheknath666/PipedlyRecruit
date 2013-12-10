@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from pipedlyapp.models import Poll, LinkedinProfile
+from pipedlyapp.models import Poll, LinkedinProfile, ScrapinghubItem
 from scrapinghub import Connection
 
 import httplib, urllib, urllib2
@@ -227,11 +227,24 @@ class ScrapinghubWrapper:
         return False
 
     def list_items(self, spider_name):
+        def create_items(job):
+            for item in job.items():
+                ScrapinghubItem.objects.get_or_create(spider_name=spider_name, item=item)
+
         if self._cur_jobs.has_key(spider_name):
             job = self._cur_jobs[spider_name]
+            print job.id, " ", job['state']
             if job:
-                return str(job.items())
-        return ""
+                create_items(job)
+        else:
+            projects = self._conn.project_ids()
+            if len(projects)<=0:
+                return
+            project = self._conn[projects[0]]
+            jobs = project.jobs()
+            for job in jobs:
+                create_items(job)
+        return ScrapinghubItem.objects.filter(spider_name=spider_name)
 
 def start_scraping_job(request):
     """
@@ -247,4 +260,6 @@ def list_scraped_items(request):
     list the scrapped items for a finished job
     """
     spider_name = request.GET.get('spider_name')
-    return HttpResponse(ScrapinghubWrapper().list_items(spider_name))
+    items = ScrapinghubWrapper().list_items(spider_name)
+    context = { "scraped_items" : items }
+    return render(request, 'pipedly/index.html', context)
