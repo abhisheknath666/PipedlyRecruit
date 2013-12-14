@@ -1,0 +1,3 @@
+[submodule "lib/scrapinghub"]
+	path = lib/scrapinghub
+	url = https://github.com/scrapinghub/python-scrapinghub.git
