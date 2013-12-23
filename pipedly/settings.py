@@ -155,7 +155,8 @@ DATABASES['default'] =  dj_database_url.config()
 
 import os
 if not os.environ.has_key('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.config(default='mysql://root@localhost:3306/pipedly')
+    # For mysql- mysql://root@localhost:3306/pipedly
+    DATABASES['default'] = dj_database_url.config(default='postgres://abhisheknath@localhost:5432/pipedly')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
