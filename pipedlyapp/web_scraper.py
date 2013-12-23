@@ -74,7 +74,7 @@ class ScrapinghubWrapper:
                             if self._is_post_redundant(forum_post):
                                 continue
                             pruned_item = self._prune_white_spaces(forum_post)
-                            ScrapinghubItem.objects.get_or_create(spider_name=spider_name, forum_post=pruned_item, title=title, url=url)
+                            ScrapinghubItem.objects.get_or_create(spider_name=spider_name, forum_post=pruned_item, title=title, url=url, date=date.today())
         if self._cur_jobs.has_key(spider_name):
             job = self._cur_jobs[spider_name]
             print job.id, " ", job['state']

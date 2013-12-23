@@ -19,3 +19,19 @@ class ScrapinghubItem(models.Model):
     forum_post = models.TextField()
     title = models.CharField(max_length=1024)
     url = models.CharField(max_length=200)
+    date = models.DateField('forum post date')
+
+class SemmantriaItem(models.Model):
+    def __unicode__(self):
+        return self.source_text
+    configuration_id = models.CharField(max_length=50)
+    document_id = models.CharField(max_length=50)
+    source_text = models.TextField()
+    categories = models.CharField(max_length=100)
+    entities = models.CharField(max_length=100)
+    queries = models.CharField(max_length=100)
+    sentiment_polarity = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+    document_summary = models.CharField(max_length=1000)
+    themes = models.CharField(max_length=1000)
+    
