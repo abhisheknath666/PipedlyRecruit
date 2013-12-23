@@ -9,7 +9,7 @@
 {% if scraped_items %}
     <ul>
     {% for item in scraped_items %}
-        <li><a href="/scraped_items/{{ item.id }}/">{{ item.forum_post }}</a></li>
+        <li>{{ item.forum_post }}</a></li>
     {% endfor %}
     </ul>
 {% endif %}

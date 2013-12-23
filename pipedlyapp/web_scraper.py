@@ -1,5 +1,4 @@
 from scrapinghub import Connection
-from pipedlyapp.analysis_phase import RemoteTextAnalysisDB
 from pipedlyapp.models import ScrapinghubItem
 from pipedlyapp.singleton import Singleton
 
@@ -90,8 +89,3 @@ class ScrapinghubWrapper:
             for job in jobs:
                 create_items(job)
         return ScrapinghubItem.objects.filter(spider_name=spider_name)
-
-    def send_items_to_analysis_db(self, items):
-        scraped_objects = items
-        for item in scraped_objects:
-            RemoteTextAnalysisDB().send_item_to_remote_db(item.title,item.url,date.today(), item.forum_post)

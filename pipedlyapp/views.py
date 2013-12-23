@@ -2,7 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from pipedlyapp.linkedin_controller import lnWrapper
 from pipedlyapp.web_scraper import ScrapinghubWrapper
+from pipedlyapp.analysis_phase import RemoteTextAnalysisDB
 
+from datetime import date
 import urllib, urllib2
 import hashlib
 import json
@@ -11,7 +13,7 @@ LN_CLIENT_ID = "755uojkm0y48vy"
 LN_CLIENT_SECRET = "2aXh3DWAJEIYsxbc"
 
 def index(request):
-    message = """<h3>Welcome to Pipedly.</h3><p><a href="/listscrapeditems?scraper=underworld">Click here</a> for a list of forum posts scraped from underworld.</p>"""
+    message = """<h3>Welcome to Pipedly.</h3><p><a href="/scrape/listscrapeditems?spider_name=underworld">Click here</a> for a list of forum posts scraped from underworld.</p>"""
     return HttpResponse(message)
 
 
@@ -102,10 +104,23 @@ def start_scraping_job(request):
 def list_scraped_items(request):
     """
     list the scrapped items for a finished job
-    http://localhost:5000/scrape/listscrapeditems?spider_name=underworld    
+    http://localhost:5000/scrape/listscrapeditems?spider_name=underworld
     """
     spider_name = request.GET.get('spider_name')
-    items = ScrapinghubWrapper().list_items(spider_name)
-    ScrapinghubWrapper().send_items_to_analysis_db(items)
-    context = { "scraped_items" : items }
+    scraped_objects = ScrapinghubWrapper().list_items(spider_name)
+    context = { "scraped_items" : scraped_objects }
     return render(request, 'pipedly/index.html', context)
+
+def upload_data_for_text_analysis(request):
+    """
+    Save the scraped data to our text analysis database
+    """
+    spider_name = request.GET.get('spider_name')
+    scraped_objects = ScrapinghubWrapper().list_items(spider_name)
+    response_message = "Success!"
+    try:
+        for item in scraped_objects:
+            RemoteTextAnalysisDB().send_item_to_remote_db(item.title,item.url,date.today(), item.forum_post)
+    except Exception as e:
+        response_message = "Failure " + str(e)
+    return HttpResponse(response_message)
