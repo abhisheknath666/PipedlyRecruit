@@ -24,14 +24,14 @@ class ScrapinghubItem(models.Model):
 class SemmantriaItem(models.Model):
     def __unicode__(self):
         return self.source_text
-    configuration_id = models.CharField(max_length=50)
-    document_id = models.CharField(max_length=50)
-    source_text = models.TextField()
-    categories = models.CharField(max_length=100)
-    entities = models.CharField(max_length=100)
-    queries = models.CharField(max_length=100)
-    sentiment_polarity = models.CharField(max_length=100)
-    status = models.CharField(max_length=100)
-    document_summary = models.CharField(max_length=1000)
-    themes = models.CharField(max_length=1000)
+    configuration_id = models.CharField(max_length=50,blank=True,null=True)
+    document_id = models.CharField(max_length=50,blank=True,null=True)
+    source_text = models.TextField(blank=True,null=True)
+    categories = models.CharField(max_length=100,blank=True,null=True)
+    entities = models.CharField(max_length=1000,blank=True,null=True)
+    queries = models.CharField(max_length=100,blank=True,null=True)
+    sentiment_polarity = models.CharField(max_length=100,blank=True,null=True)
+    status = models.CharField(max_length=100,blank=True,null=True)
+    document_summary = models.TextField(blank=True,null=True)
+    themes = models.CharField(max_length=1000,blank=True,null=True)
     
