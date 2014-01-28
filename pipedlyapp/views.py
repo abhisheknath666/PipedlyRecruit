@@ -8,6 +8,9 @@ from datetime import date
 import urllib, urllib2
 import hashlib
 import json
+import logging
+
+logging.basicConfig()
 
 LN_CLIENT_ID = "755uojkm0y48vy"
 LN_CLIENT_SECRET = "2aXh3DWAJEIYsxbc"

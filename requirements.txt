@@ -8,9 +8,12 @@ django-common-helpers==0.6.0
 django-cron==0.3.3
 django-toolbelt==0.0.1
 gunicorn==18.0
+ndg-httpsclient==0.3.2
 psycopg2==2.5.1
+pyOpenSSL==0.13.1
+pyasn1==0.1.7
 requests==1.2.3
-scrapinghub==1.4.3
+scrapinghub==1.4.4
 static==0.4
 virtualenv==1.9.1
 wsgiref==0.1.2

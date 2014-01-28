@@ -4,6 +4,8 @@ from pipedlyapp.singleton import Singleton
 
 from datetime import date
 import re
+import logging
+logger = logging.getLogger('web_scraper')
 
 POST_THRESHOLD_LENGTH = 10
 BOGUS_POST_SUBSTRINGS = ["Powered by vBulletin"]
@@ -12,7 +14,7 @@ class ScrapinghubWrapper:
     __metaclass__=Singleton
 
     def __init__(self):
-        self._api_key = "21822bba597f4d379d25953ba3202dfa"
+        self._api_key = "b8c81c36e5ca4490859728107717f0f6"
         self._conn = Connection(self._api_key)
         self._cur_jobs = {}
 
@@ -79,7 +81,10 @@ class ScrapinghubWrapper:
             job = self._cur_jobs[spider_name]
             print job.id, " ", job['state']
             if job:
-                create_items(job)
+                try:
+                    create_items(job)
+                except Exception as e:
+                    logger.warning('%s raised',str(e))
         else:
             projects = self._conn.project_ids()
             if len(projects)<=0:
@@ -87,5 +92,8 @@ class ScrapinghubWrapper:
             project = self._conn[projects[0]]
             jobs = project.jobs()
             for job in jobs:
-                create_items(job)
+                try:
+                    create_items(job)
+                except Exception as e:
+                    logger.warning('%s raised',str(e))
         return ScrapinghubItem.objects.filter(spider_name=spider_name)
