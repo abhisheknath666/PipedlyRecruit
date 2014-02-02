@@ -134,13 +134,32 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },        
     },
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'views': {
+            'handlers': ['null'],
+            'propogate': True,
+            'level' : 'DEBUG',
+        },
+        'web_scraper': {
+            'handlers': ['null'],
+            'propogate': True,
+            'level' : 'DEBUG',
+        },
+        'scrapinghub': {
+            'handlers': ['null'],
+            'propogate': True,
+            'level' : 'DEBUG',
         },
     }
 }

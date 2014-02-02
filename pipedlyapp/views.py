@@ -1,3 +1,8 @@
+import wrapped_socket_patch
+
+import logging
+logging.basicConfig()
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from pipedlyapp.linkedin_controller import lnWrapper
@@ -8,9 +13,8 @@ from datetime import date
 import urllib, urllib2
 import hashlib
 import json
-import logging
 
-logging.basicConfig()
+logger = logging.getLogger("views")
 
 LN_CLIENT_ID = "755uojkm0y48vy"
 LN_CLIENT_SECRET = "2aXh3DWAJEIYsxbc"
@@ -110,6 +114,7 @@ def list_scraped_items(request):
     http://localhost:5000/scrape/listscrapeditems?spider_name=underworld
     """
     spider_name = request.GET.get('spider_name')
+    logger.debug("list_scraped_items spider_name: %s",spider_name)
     scraped_objects = ScrapinghubWrapper().list_items(spider_name)
     context = { "scraped_items" : scraped_objects }
     return render(request, 'pipedly/index.html', context)
