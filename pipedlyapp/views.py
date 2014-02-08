@@ -114,8 +114,11 @@ def list_scraped_items(request):
     http://localhost:5000/scrape/listscrapeditems?spider_name=underworld
     """
     spider_name = request.GET.get('spider_name')
-    logger.debug("list_scraped_items spider_name: %s",spider_name)
-    scraped_objects = ScrapinghubWrapper().list_items(spider_name)
+    limit = request.GET.get('limit')
+    if not limit:
+        limit = 500
+    logger.debug("list_scraped_items spider_name: %s",spider_name)    
+    scraped_objects = ScrapinghubWrapper().list_items(spider_name, limit)
     context = { "scraped_items" : scraped_objects }
     return render(request, 'pipedly/index.html', context)
 

@@ -62,7 +62,7 @@ class ScrapinghubWrapper:
 
         return False
 
-    def list_items(self, spider_name):
+    def list_items(self, spider_name, limit=500):
         def create_items(job):
             for item_dict in job.items():
                 forum_posts = item_dict.get("forumpost",None)
@@ -76,10 +76,9 @@ class ScrapinghubWrapper:
                             if self._is_post_redundant(forum_post):
                                 continue
                             pruned_item = self._prune_white_spaces(forum_post)
-                            # logger.debug("Pruned item: %s", str(pruned_item))
+                            logger.debug("Pruned item: %s", pruned_item.encode('utf-8'))
                             ScrapinghubItem.objects.get_or_create(spider_name=spider_name, forum_post=pruned_item, title=title, url=url, date=date.today())
 
-        logger.debug("In list_items");
         if self._cur_jobs.has_key(spider_name):
             job = self._cur_jobs[spider_name]
             print job.id, " ", job['state']
@@ -101,4 +100,7 @@ class ScrapinghubWrapper:
                     create_items(job)
                 except Exception as e:
                     logger.warning('%s raised',str(e))
-        return ScrapinghubItem.objects.filter(spider_name=spider_name)
+                break
+        if ScrapinghubItem.objects.count()>limit:
+            return ScrapinghubItem.objects.filter(spider_name=spider_name)
+        return ScrapinghubItem.objects.filter(spider_name=spider_name)[0:limit]
