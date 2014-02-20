@@ -120,7 +120,24 @@ class SemantriaResultsOrganizer:
         "Renewable Energy" is neutral (sentiment score: 0.000, strength: 0.514)
         "Health" is neutral (sentiment score: -0.041, strength: 0.450)
         """
-        pass
+        category_list = categories.split(')')
+        for item in categories_list:
+            item = item.lstrip()
+            category_end_index = item.find(' is') 
+            sentiment_start_index = self._find_index_for_pattern(item, 'is ', category_end_index)
+            sentiment_end_index = item.find(' ', sentiment_start_index)
+            sentiment_score_index = self._find_index_for_pattern(item, 'score: ', sentiment_end_index)
+            sentiment_score_end_index = item.find(',', sentiment_score_index)
+            strength_index = self._find_index_for_pattern(item, 'strength: ', sentiment_score_end_index)
+
+            if category_end_index==-1 or sentiment_start_index==-1 or sentiment_end_index==-1 or sentiment_score_index==-1 or sentiment_score_end_index==-1 or strength_index==-1:
+                continue
+
+            category_name = item[:category_end_index]
+            sentiment = item[sentiment_start_index:sentiment_end_index]
+            sentiment_score = item[sentiment_score_index:sentiment_score_end_index]
+            strength = item[strength_index:]
+            SemmantriaCategory.get_or_create(document_id=document_id, category_name=category_name, sentiment=sentiment, sentiment_score=sentiment_score, strength=strength)
 
     def _find_index_for_pattern(self, item, pattern, from_index=0):
         index = item.find(pattern,from_index)
