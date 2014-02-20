@@ -119,6 +119,7 @@ INSTALLED_APPS = (
 
 CRON_CLASSES = [
     'pipedlyapp.cron_jobs.ScrapinghubCronJob',
+    # 'pipedlyapp.cron_jobs.SemantriaResultsOrganizerCronJob',
 ]
 
 # A sample logging configuration. The only tangible logging

@@ -15,11 +15,11 @@ class ScrapinghubCronJob(CronJobBase):
         ScrapinghubWrapper().start_scheduled_job('underworld')
 
 
-class SemmantriaResultsOrganizerCronJob(CronJobBase):
+class SemantriaResultsOrganizerCronJob(CronJobBase):
     RUN_EVERY_MINS = 120
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'pipedlyapp.cron_jobs.SemmantriaResultsOrganizerCronJob'
+    code = 'pipedlyapp.cron_jobs.SemantriaResultsOrganizerCronJob'
 
     def __init__(self):
         pass
