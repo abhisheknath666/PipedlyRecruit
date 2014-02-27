@@ -25,15 +25,11 @@ class SemantriaItem(models.Model):
     def __unicode__(self):
         return self.source_text
     configuration_id = models.CharField(max_length=50,blank=True,null=True)
-    document_id = models.BigIntegerField(primary_key=True)
+    document_id = models.ForeignKey('ScrapinghubItem')
     source_text = models.TextField(blank=True,null=True)
-    categories = models.CharField(max_length=1000,blank=True,null=True)
-    entities = models.CharField(max_length=1000,blank=True,null=True)
-    queries = models.CharField(max_length=100,blank=True,null=True)
     sentiment_polarity = models.CharField(max_length=100,blank=True,null=True)
     status = models.CharField(max_length=100,blank=True,null=True)
     document_summary = models.TextField(blank=True,null=True)
-    themes = models.CharField(max_length=1000,blank=True,null=True)
 
 POSITIVE = 0
 NEGATIVE = 1

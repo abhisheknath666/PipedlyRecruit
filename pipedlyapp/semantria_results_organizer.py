@@ -1,4 +1,5 @@
 from pipedlyapp.models import SemantriaItem, SemantriaCategory, SemantriaEntity, SemantriaThemes, SemantriaQuery
+import Singleton
 
 from datetime import date
 import re

@@ -119,7 +119,7 @@ INSTALLED_APPS = (
 
 CRON_CLASSES = [
     'pipedlyapp.cron_jobs.ScrapinghubCronJob',
-    # 'pipedlyapp.cron_jobs.SemantriaResultsOrganizerCronJob',
+    'pipedlyapp.cron_jobs.SemantriaResultsLookupCronJob',
 ]
 
 # A sample logging configuration. The only tangible logging
@@ -163,6 +163,11 @@ LOGGING = {
             'level' : 'DEBUG',
         },
         'scrapinghub': {
+            'handlers': ['null'],
+            'propogate': True,
+            'level' : 'DEBUG',
+        },
+        'text_analysis': {
             'handlers': ['null'],
             'propogate': True,
             'level' : 'DEBUG',

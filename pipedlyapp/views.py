@@ -5,9 +5,12 @@ logging.basicConfig()
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.db.models import Max
+
+from pipedlyapp.models import SemantriaEntity
 from pipedlyapp.linkedin_controller import lnWrapper
 from pipedlyapp.web_scraper import ScrapinghubWrapper
-from pipedlyapp.analysis_phase import RemoteTextAnalysisDB
+from pipedlyapp.text_analysis import TextAnalysis
 
 from datetime import date
 import urllib, urllib2
@@ -127,11 +130,14 @@ def upload_data_for_text_analysis(request):
     Save the scraped data to our text analysis database
     """
     spider_name = request.GET.get('spider_name')
-    scraped_objects = ScrapinghubWrapper().list_items(spider_name)
+    max_document_id = SemantriaEntity.objects.aggregate(Max('document_id'))['document_id__max']
+    if not max_document_id:
+        max_document_id = 0
+    scraped_objects = ScrapinghubWrapper().get_scraped_items(spider_name,max_document_id)
     response_message = "Success!"
     try:
         for item in scraped_objects:
-            RemoteTextAnalysisDB().send_item_to_remote_db(item.title,item.url,date.today(), item.forum_post)
+            TextAnalysis().send_item_for_analysis(item.pk, item.forum_post)
     except Exception as e:
         response_message = "Failure " + str(e)
     return HttpResponse(response_message)
