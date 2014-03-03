@@ -61,9 +61,92 @@ class TextAnalysis:
         if isinstance(status, list):
             for object_ in status:
                 results.append(object_)
+        for result in results:
+            self._create_item(result)
 
         logger.debug("Results: %s",str(results))
 
+    def _create_item(self, result):
+        doc_id = result.get("id",None)
+        config_id = result.get("config_id",None)
+        tag = result.get("tag",None)
+        sentiment_polarity = SENTIMENT_CHOICE_DICT[result.get("sentiment_polarity", "neutral")]
+        sentiment_score = result.get("sentiment_score")
+        document_summary = result.get("summary",None)
+        source_text = result.get("source_text",None)
+        status = result.get("status",None)
+
+        if status!="processed" or doc_id==None:
+            return
+        
+        SemantriaItem.objects.get_or_create(document_id=doc_id,source_text=source_text,tag=tag,sentiment_polarity=sentiment_polarity,document_summary=document_summary)
+
+        phrases = result.get("phrases",[])
+        for phrase in phrases:
+            self._create_phrase(doc_id,phrase)
+
+        themes = result.get("themes",[])
+        for theme in themes:
+            self._create_theme(doc_id,theme)
+
+        entities = result.get("entities",[])
+        for entity in entities:
+            self._create_entity(doc_id,entity)
+
+    def _create_phrase(self, document_id, phrase):
+        title = phrase.get("title",None)
+        sentiment_polarity = SENTIMENT_CHOICE_DICT[phrase.get("sentiment_polarity", "neutral")]
+        sentiment_score = phrase.get("sentiment_score")
+        is_negated = phrase.get("is_negated")
+        phrase_type = PHRASE_TYPE_DICT[phrase.get("type","detected")]
+            
+        if not title:
+            return
+
+        SemantriaPhrase.objects.get_or_create(document_id=document_id,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,is_negated=is_negated,phrase_type=phrase_type)
+
+    def _create_theme(self, document_id, theme):
+        title = theme.get("title",None)
+        sentiment_polarity = SENTIMENT_CHOICE_DICT[theme.get("sentiment_polarity", "neutral")]
+        sentiment_score = theme.get("sentiment_score")
+        evidence = theme.get("evidene",None)
+        is_about = theme.get("is_about",None)
+        strength_score = theme.get("strength_score",None)
+
+        if not title:
+            return
+
+        return SemantriaTheme.objects.get_or_create(document_id=document_id,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,evidence=evidence,is_about=is_about,strength_score=strength_score)
+
+    def _create_entity(self, document_id, entity):
+        title = entity.get("title",None)
+        sentiment_polarity = SENTIMENT_CHOICE_DICT[entity.get("sentiment_polarity", "neutral")]
+        sentiment_score = entity.get("sentiment_score")
+        evidence = entity.get("evidene",None)
+        is_about = entity.get("is_about",None)
+        confident = entity.get("confident",None)
+        label = entity.get("label",None)
+        themes = entity.get("themes",[])
+        entity_type = ENTITY_TYPE_DICT[entity.get("type","named")]        
+
+        if not title:
+            return
+
+        entity_obj = SemantriaEntity.objects.get_or_create(document_id=document_id,entity_type=entity_type,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,evidence=evidence,is_about=is_about,confident=confident,label=label)
+
+        for theme in themes:
+            theme_obj = self._create_theme(document_id,theme)
+            SemantriaEntityToThemes.objects.get_or_create(entity=entity_obj,theme=theme_obj)
+
+    def _create_topic(self, document_id, topic):
+        title = topic.get("title",None)
+        sentiment_polarity = SENTIMENT_CHOICE_DICT[topic.get("sentiment_polarity", "neutral")]
+        sentiment_score = topic.get("sentiment_score")
+        strength_score = topic.get("strength_score",None)
+        
+        
+        
+        
         # for data in results:
         #     # Printing of document sentiment score
         #     logger.debug("Document ", data["id"], " Sentiment score: ", data["sentiment_score"], "\r\n")

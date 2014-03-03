@@ -130,7 +130,7 @@ def upload_data_for_text_analysis(request):
     Save the scraped data to our text analysis database
     """
     spider_name = request.GET.get('spider_name')
-    max_document_id = SemantriaEntity.objects.aggregate(Max('document_id'))['document_id__max']
+    max_document_id = SemantriaItem.objects.aggregate(Max('document_id'))['document_id__max']
     if not max_document_id:
         max_document_id = 0
     scraped_objects = ScrapinghubWrapper().get_scraped_items(spider_name,max_document_id)
