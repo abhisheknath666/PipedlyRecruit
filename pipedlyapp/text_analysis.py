@@ -1,4 +1,4 @@
-from pipedlyapp.models import SemantriaItem, SemantriaCategory, SemantriaEntity, SemantriaThemes, SemantriaQuery
+from pipedlyapp.models import SemantriaItem, SemantriaPhrase, SemantriaEntity, SemantriaTheme, SemantriaOpinion, SemantriaTopic, SemantriaEntityToThemes,SENTIMENT_CHOICES, SENTIMENT_CHOICE_DICT, PHRASE_TYPE, PHRASE_TYPE_DICT, ENTITY_TYPE, ENTITY_TYPE_DICT, TOPIC_TYPE, TOPIC_TYPE_DICT, ScrapinghubItem
 from pipedlyapp.singleton import Singleton
 
 from datetime import date
@@ -64,7 +64,7 @@ class TextAnalysis:
         for result in results:
             self._create_item(result)
 
-        logger.debug("Results: %s",str(results))
+        # logger.debug("Results: %s",str(results))
 
     def _create_item(self, result):
         doc_id = result.get("id",None)
@@ -76,10 +76,23 @@ class TextAnalysis:
         source_text = result.get("source_text",None)
         status = result.get("status",None)
 
-        if status!="processed" or doc_id==None:
+        # logger.debug("doc_id: %s config_id: %s tag: %s sentiment_polarity: %s sentiment_score: %s document_summary: %s source_text: %s status: %s", str(doc_id), str(config_id), str(tag), str(sentiment_polarity), str(sentiment_score), str(document_summary), str(source_text), str(status))
+        success = True
+        if status!="PROCESSED":
+            success=False
+        if doc_id!=None:
+            doc_id = ScrapinghubItem.objects.filter(pk=int(doc_id))
+            if doc_id==None:
+                success=False
+        else:
+            success=False
+
+        if not success:
+            logger.debug("Problem creating item")
             return
-        
-        SemantriaItem.objects.get_or_create(document_id=doc_id,source_text=source_text,tag=tag,sentiment_polarity=sentiment_polarity,document_summary=document_summary)
+                
+        doc_id, created = SemantriaItem.objects.get_or_create(document_id=doc_id[0],config_id=config_id, source_text=source_text,tag=tag,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,document_summary=document_summary)
+        logger.debug("Results: %s",str(SemantriaItem.objects.all()))
 
         phrases = result.get("phrases",[])
         for phrase in phrases:
@@ -96,11 +109,12 @@ class TextAnalysis:
     def _create_phrase(self, document_id, phrase):
         title = phrase.get("title",None)
         sentiment_polarity = SENTIMENT_CHOICE_DICT[phrase.get("sentiment_polarity", "neutral")]
-        sentiment_score = phrase.get("sentiment_score")
-        is_negated = phrase.get("is_negated")
+        sentiment_score = phrase.get("sentiment_score",None)
+        is_negated = phrase.get("is_negated",None)
         phrase_type = PHRASE_TYPE_DICT[phrase.get("type","detected")]
             
         if not title:
+            logger.debug("Problem creating phrase")            
             return
 
         SemantriaPhrase.objects.get_or_create(document_id=document_id,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,is_negated=is_negated,phrase_type=phrase_type)
@@ -114,6 +128,7 @@ class TextAnalysis:
         strength_score = theme.get("strength_score",None)
 
         if not title:
+            logger.debug("Problem creating theme")            
             return
 
         return SemantriaTheme.objects.get_or_create(document_id=document_id,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,evidence=evidence,is_about=is_about,strength_score=strength_score)
@@ -121,7 +136,7 @@ class TextAnalysis:
     def _create_entity(self, document_id, entity):
         title = entity.get("title",None)
         sentiment_polarity = SENTIMENT_CHOICE_DICT[entity.get("sentiment_polarity", "neutral")]
-        sentiment_score = entity.get("sentiment_score")
+        sentiment_score = entity.get("sentiment_score",None)
         evidence = entity.get("evidene",None)
         is_about = entity.get("is_about",None)
         confident = entity.get("confident",None)
@@ -130,40 +145,25 @@ class TextAnalysis:
         entity_type = ENTITY_TYPE_DICT[entity.get("type","named")]        
 
         if not title:
+            logger.debug("Problem creating entity")            
             return
 
-        entity_obj = SemantriaEntity.objects.get_or_create(document_id=document_id,entity_type=entity_type,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,evidence=evidence,is_about=is_about,confident=confident,label=label)
+        entity_obj, created = SemantriaEntity.objects.get_or_create(document_id=document_id,entity_type=entity_type,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,evidence=evidence,is_about=is_about,confident=confident,label=label)
 
         for theme in themes:
-            theme_obj = self._create_theme(document_id,theme)
+            theme_obj, created = self._create_theme(document_id,theme)
             SemantriaEntityToThemes.objects.get_or_create(entity=entity_obj,theme=theme_obj)
 
     def _create_topic(self, document_id, topic):
         title = topic.get("title",None)
         sentiment_polarity = SENTIMENT_CHOICE_DICT[topic.get("sentiment_polarity", "neutral")]
-        sentiment_score = topic.get("sentiment_score")
+        sentiment_score = topic.get("sentiment_score",None)
         strength_score = topic.get("strength_score",None)
-        
-        
-        
-        
-        # for data in results:
-        #     # Printing of document sentiment score
-        #     logger.debug("Document ", data["id"], " Sentiment score: ", data["sentiment_score"], "\r\n")
+        topic_type = TOPIC_TYPE_DICT[topic.get("type","query")]
+        hit_count = topic.get("hitcount",None)
 
-        #     # Printing of document themes
-        #     if "themes" in data:
-        #         logger.debug("Document themes:", "\r\n")
-        #         for theme in data["themes"]:
-        #             logger.debug("	", theme["title"], " (sentiment: ", theme["sentiment_score"], ")", "\r\n")
+        if not title:
+            logger.debug("Problem creating topic")                        
+            return
 
-        #     # Printing of document entities
-        #     if "entities" in data:
-        #         logger.debug("Entities:", "\r\n")
-        #         for entity in data["entities"]:
-        #             logger.debug("\t",
-        #                   entity["title"], " : ", entity["entity_type"],
-        #                   " (sentiment: ", entity["sentiment_score"], ")", "\r\n"
-        #             )
-        
-
+        SemantriaTopic.objects.get_or_create(document_id=document_id,title=title,topic_type=topic_type,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,strength_score=strength_score,hit_count=hit_count)        

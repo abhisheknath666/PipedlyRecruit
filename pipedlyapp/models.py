@@ -37,7 +37,7 @@ SENTIMENT_CHOICE_DICT = {
 
 class SemantriaItem(models.Model):
     def __unicode__(self):
-        return self.source_text
+        return self.config_id
     config_id = models.CharField(max_length=50,blank=True,null=True)
     document_id = models.OneToOneField('ScrapinghubItem')
     source_text = models.TextField(blank=True,null=True)
@@ -117,7 +117,7 @@ class SemantriaEntityToThemes(models.Model):
     def __unicode__(self):
         return self.entity.entity
     entity = models.ForeignKey('SemantriaEntity')
-    theme = models.ForeignKey('SemantriaThemes')
+    theme = models.ForeignKey('SemantriaTheme')
 
 class SemantriaOpinion(models.Model):
     def __unicode__(self):

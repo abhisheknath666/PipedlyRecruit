@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.db.models import Max
 
-from pipedlyapp.models import SemantriaEntity
+from pipedlyapp.models import SemantriaItem
 from pipedlyapp.linkedin_controller import lnWrapper
 from pipedlyapp.web_scraper import ScrapinghubWrapper
 from pipedlyapp.text_analysis import TextAnalysis
