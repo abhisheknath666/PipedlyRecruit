@@ -44,7 +44,7 @@ class SemantriaItem(models.Model):
     tag = models.CharField(max_length=100,blank=True,null=True)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)
     sentiment_score = models.FloatField(blank=True, null=True)
-    document_summary = models.TextField(blank=True,null=True)
+    document_summary = models.TextField(blank=True,null=True)    
 
 POSSIBLE = 0
 DETECTED = 1

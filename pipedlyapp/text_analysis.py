@@ -91,7 +91,7 @@ class TextAnalysis:
             logger.debug("Problem creating item")
             return
                 
-        doc_id, created = SemantriaItem.objects.get_or_create(document_id=doc_id[0],config_id=config_id, source_text=source_text,tag=tag,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,document_summary=document_summary)
+        doc_id, created = SemantriaItem.objects.get_or_create(document_id=doc_id[0], defaults={'config_id':config_id, 'source_text':source_text,'tag':tag,'sentiment_polarity':sentiment_polarity,'sentiment_score':sentiment_score,'document_summary':document_summary})
         logger.debug("Results: %s",str(SemantriaItem.objects.all()))
 
         phrases = result.get("phrases",[])
@@ -117,7 +117,7 @@ class TextAnalysis:
             logger.debug("Problem creating phrase")            
             return
 
-        SemantriaPhrase.objects.get_or_create(document_id=document_id,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,is_negated=is_negated,phrase_type=phrase_type)
+        SemantriaPhrase.objects.get_or_create(document_id=document_id,title=title,defaults={'sentiment_polarity':sentiment_polarity,'sentiment_score':sentiment_score,'is_negated':is_negated,'phrase_type':phrase_type})
 
     def _create_theme(self, document_id, theme):
         title = theme.get("title",None)
@@ -131,7 +131,7 @@ class TextAnalysis:
             logger.debug("Problem creating theme")            
             return
 
-        return SemantriaTheme.objects.get_or_create(document_id=document_id,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,evidence=evidence,is_about=is_about,strength_score=strength_score)
+        return SemantriaTheme.objects.get_or_create(document_id=document_id,title=title,defaults={'sentiment_polarity':sentiment_polarity,'sentiment_score':sentiment_score,'evidence':evidence,'is_about':is_about,'strength_score':strength_score})
 
     def _create_entity(self, document_id, entity):
         title = entity.get("title",None)
@@ -148,7 +148,7 @@ class TextAnalysis:
             logger.debug("Problem creating entity")            
             return
 
-        entity_obj, created = SemantriaEntity.objects.get_or_create(document_id=document_id,entity_type=entity_type,title=title,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,evidence=evidence,is_about=is_about,confident=confident,label=label)
+        entity_obj, created = SemantriaEntity.objects.get_or_create(document_id=document_id,title=title, defaults={'entity_type':entity_type,'sentiment_polarity':sentiment_polarity,'sentiment_score':sentiment_score,'evidence':evidence,'is_about':is_about,'confident':confident,'label':label})
 
         for theme in themes:
             theme_obj, created = self._create_theme(document_id,theme)
@@ -166,4 +166,4 @@ class TextAnalysis:
             logger.debug("Problem creating topic")                        
             return
 
-        SemantriaTopic.objects.get_or_create(document_id=document_id,title=title,topic_type=topic_type,sentiment_polarity=sentiment_polarity,sentiment_score=sentiment_score,strength_score=strength_score,hit_count=hit_count)        
+        SemantriaTopic.objects.get_or_create(document_id=document_id,title=title,defaults={'topic_type':topic_type,'sentiment_polarity':sentiment_polarity,'sentiment_score':sentiment_score,'strength_score':strength_score,'hit_count':hit_count})        
