@@ -47,6 +47,8 @@ class SendForAnalysisCronJob(CronJobBase):
         max_document_id = SemantriaItem.objects.aggregate(Max('document_id'))['document_id__max']
         if not max_document_id:
             max_document_id = 0
+
+        logger.debug("Max document id: %d",max_document_id)
         scraped_objects = ScrapinghubWrapper().get_scraped_items(spider_name,max_document_id)
         try:
             for item in scraped_objects:
