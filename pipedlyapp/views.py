@@ -1,5 +1,3 @@
-import wrapped_socket_patch
-
 import logging
 logging.basicConfig()
 
