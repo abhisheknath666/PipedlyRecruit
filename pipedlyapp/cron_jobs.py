@@ -49,7 +49,7 @@ class SendForAnalysisCronJob(CronJobBase):
             max_document_id = 0
 
         logger.debug("Max document id: %d",max_document_id)
-        scraped_objects = ScrapinghubWrapper().get_scraped_items(spider_name,max_document_id)
+        scraped_objects = ScrapinghubWrapper().get_scraped_items('underworld',max_document_id)
         try:
             for item in scraped_objects:
                 TextAnalysis().send_item_for_analysis(item.pk, item.forum_post)
