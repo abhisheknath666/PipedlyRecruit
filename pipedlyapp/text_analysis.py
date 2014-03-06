@@ -56,6 +56,7 @@ class TextAnalysis:
             logger.debug("%s document queued successfully.", doc["id"])
         
     def scan_for_results(self):
+        logger.debug("Scanning for results")
         status = self.session.getProcessedDocuments()
         results = []
         if isinstance(status, list):
