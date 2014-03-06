@@ -119,7 +119,7 @@ def list_scraped_items(request):
     spider_name = request.GET.get('spider_name')
     limit = request.GET.get('limit')
     if not limit:
-        limit = 500
+        limit = 1000
     logger.debug("list_scraped_items spider_name: %s",spider_name)    
     scraped_objects = ScrapinghubWrapper().list_items(spider_name, limit)
     context = { "scraped_items" : scraped_objects }

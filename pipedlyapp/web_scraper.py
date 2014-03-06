@@ -62,9 +62,9 @@ class ScrapinghubWrapper:
 
         return False
 
-    def get_scraped_items(self, spider_name, gt_document_id):
+    def get_scraped_items(self, spider_name, gt_document_id=0):
         self.grab_latest_items(spider_name)
-        return ScrapinghubItem.objects.filter(spider_name=spider_name,pk__gt=gt_document_id)[:5]
+        return ScrapinghubItem.objects.filter(spider_name=spider_name,pk__gt=gt_document_id)[:1000]
 
     def grab_latest_items(self, spider_name):
         def create_items(job):
@@ -105,7 +105,7 @@ class ScrapinghubWrapper:
                     logger.warning('%s raised',str(e))
                 break
 
-    def list_items(self, spider_name, limit=500):
+    def list_items(self, spider_name, limit=1000):
         if ScrapinghubItem.objects.count()<limit:
             return ScrapinghubItem.objects.filter(spider_name=spider_name)
         return ScrapinghubItem.objects.filter(spider_name=spider_name)[0:limit]        

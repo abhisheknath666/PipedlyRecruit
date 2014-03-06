@@ -3,7 +3,7 @@ from web_scraper import ScrapinghubWrapper
 from text_analysis import TextAnalysis
 
 class ScrapinghubCronJob(CronJobBase):
-    RUN_EVERY_MINS = 60*48
+    RUN_EVERY_MINS = 1
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'pipedlyapp.cron_jobs.ScrapinghubCronJob'
@@ -12,8 +12,8 @@ class ScrapinghubCronJob(CronJobBase):
         pass
 
     def do(self):
-        ScrapinghubWrapper().list_items('underworld')
-        ScrapinghubWrapper().start_scheduled_job('underworld')
+        ScrapinghubWrapper().get_scraped_items('underworld')
+        # ScrapinghubWrapper().start_scheduled_job('underworld')
 
 class SemantriaResultsLookupCronJob(CronJobBase):
     RUN_EVERY_MINS = 1
