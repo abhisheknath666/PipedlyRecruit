@@ -50,5 +50,5 @@ class SendForAnalysisCronJob(CronJobBase):
         try:
             for item in scraped_objects:
                 TextAnalysis().send_item_for_analysis(item.pk, item.forum_post)
-            except Exception as e:
-                logger.debug("%s raised",str(e))
+        except Exception as e:
+            logger.debug("%s raised",str(e))
