@@ -2,6 +2,7 @@ from django_cron import CronJobBase, Schedule
 from web_scraper import ScrapinghubWrapper
 from text_analysis import TextAnalysis
 from pipedlyapp.models import SemantriaItem
+from django.db.models import Max
 
 import logging
 logging.basicConfig()
