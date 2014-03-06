@@ -48,7 +48,7 @@ class TextAnalysis:
         print("\n", "AUTORESPONSE: ", len(result), result)
 
     def send_item_for_analysis(self, document_id, text):
-        doc = {"id": document_id, "text": text}
+        doc = {"id": document_id, "text": text[:8000]}
         # Queues document for processing on Semantria service
         status = self.session.queueDocument(doc)
         # Check status from Semantria service

@@ -41,7 +41,7 @@ class SemantriaItem(models.Model):
     config_id = models.CharField(max_length=50,blank=True,null=True)
     document_id = models.OneToOneField('ScrapinghubItem')
     source_text = models.TextField(blank=True,null=True)
-    tag = models.CharField(max_length=100,blank=True,null=True)
+    tag = models.CharField(max_length=1000,blank=True,null=True)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)
     sentiment_score = models.FloatField(blank=True, null=True)
     document_summary = models.TextField(blank=True,null=True)    
@@ -75,7 +75,7 @@ class SemantriaTheme(models.Model):
     def __unicode__(self):
         return self.theme
     document_id = models.ForeignKey('SemantriaItem')
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=1000)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)
     sentiment_score = models.FloatField(blank=True, null=True)
     evidence = models.IntegerField(blank=True, null=True)
@@ -102,13 +102,13 @@ class SemantriaEntity(models.Model):
         return self.entity
     document_id = models.ForeignKey('SemantriaItem')
     entity_type = models.IntegerField(choices=ENTITY_TYPE,default=NAMED,blank=True,null=True)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=1000)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL,blank=True, null=True)
     sentiment_score = models.FloatField(blank=True, null=True)
     evidence = models.IntegerField(blank=True, null=True)
     is_about = models.NullBooleanField(blank=True,null=True)
     confident = models.NullBooleanField(blank=True,null=True)
-    label = models.CharField(max_length=100,null=True,blank=True)
+    label = models.CharField(max_length=1000,null=True,blank=True)
 
     class Meta:
         unique_together = ("document_id","title")
@@ -124,8 +124,8 @@ class SemantriaOpinion(models.Model):
         return self.category_name
     document_id = models.ForeignKey('SemantriaItem')
     quotation = models.CharField(max_length=1000, blank=True, null=True)
-    speaker = models.CharField(max_length=100, blank=True, null=True)
-    topic = models.CharField(max_length=100, blank=True, null=True)
+    speaker = models.CharField(max_length=1000, blank=True, null=True)
+    topic = models.CharField(max_length=10000, blank=True, null=True)
     opinion_type = models.IntegerField(choices=ENTITY_TYPE, default=NAMED, blank=True, null=True)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)
     sentiment_score = models.FloatField(blank=True, null=True)
