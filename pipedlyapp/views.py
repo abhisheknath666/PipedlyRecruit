@@ -131,7 +131,7 @@ def upload_data_for_text_analysis(request):
     max_document_id = SemantriaItem.objects.aggregate(Max('document_id'))['document_id__max']
     if not max_document_id:
         max_document_id = 0
-    scraped_objects = ScrapinghubWrapper().grab_latest_items(spider_name,max_document_id)
+    scraped_objects = ScrapinghubWrapper().get_scraped_items(spider_name,max_document_id)
     response_message = "Success!"
     try:
         for item in scraped_objects:
