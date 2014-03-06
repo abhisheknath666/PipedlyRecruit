@@ -12,7 +12,7 @@ class ScrapinghubCronJob(CronJobBase):
         pass
 
     def do(self):
-        ScrapinghubWrapper().get_scraped_items('underworld')
+        ScrapinghubWrapper().grab_latest_items('underworld')
         # ScrapinghubWrapper().start_scheduled_job('underworld')
 
 class SemantriaResultsLookupCronJob(CronJobBase):

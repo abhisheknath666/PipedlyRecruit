@@ -65,10 +65,6 @@ class ScrapinghubWrapper:
         return False
 
     def get_scraped_items(self, spider_name, gt_document_id=0):
-        try:
-            self.grab_latest_items(spider_name)
-        except Exception as e:
-            logger.warning('%s raised',str(e))
         return ScrapinghubItem.objects.filter(spider_name=spider_name,pk__gt=gt_document_id)[:1000]
 
     def grab_latest_items(self, spider_name):
