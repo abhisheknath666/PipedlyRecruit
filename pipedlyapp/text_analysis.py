@@ -48,7 +48,7 @@ class TextAnalysis:
         print("\n", "AUTORESPONSE: ", len(result), result)
 
     def send_item_for_analysis(self, document_id, text):
-        doc = {"id": document_id, "text": text[:8000]}
+        doc = {"id": str(document_id), "text": text[:8000]}
         # Queues document for processing on Semantria service
         status = self.session.queueDocument(doc)
         # Check status from Semantria service
@@ -68,7 +68,7 @@ class TextAnalysis:
         # logger.debug("Results: %s",str(results))
 
     def _create_item(self, result):
-        doc_id = result.get("id",None)
+        doc_id = int(result.get("id",None))
         config_id = result.get("config_id",None)
         tag = result.get("tag",None)
         sentiment_polarity = SENTIMENT_CHOICE_DICT[result.get("sentiment_polarity", "neutral")]

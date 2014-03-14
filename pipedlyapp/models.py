@@ -102,13 +102,13 @@ class SemantriaEntity(models.Model):
         return self.entity
     document_id = models.ForeignKey('SemantriaItem')
     entity_type = models.IntegerField(choices=ENTITY_TYPE,default=NAMED,blank=True,null=True)
-    title = models.CharField(max_length=1000)
+    title = models.CharField(max_length=10000)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL,blank=True, null=True)
     sentiment_score = models.FloatField(blank=True, null=True)
     evidence = models.IntegerField(blank=True, null=True)
     is_about = models.NullBooleanField(blank=True,null=True)
     confident = models.NullBooleanField(blank=True,null=True)
-    label = models.CharField(max_length=1000,null=True,blank=True)
+    label = models.CharField(max_length=10000,null=True,blank=True)
 
     class Meta:
         unique_together = ("document_id","title")
