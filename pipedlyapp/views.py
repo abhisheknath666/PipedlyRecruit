@@ -2,13 +2,14 @@ import logging
 logging.basicConfig()
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.db.models import Max
 
 from pipedlyapp.models import SemantriaItem
 from pipedlyapp.linkedin_controller import lnWrapper
 from pipedlyapp.web_scraper import ScrapinghubWrapper
 from pipedlyapp.text_analysis import TextAnalysis
+from pipedlyapp.underworld_dashboard import *
 
 from datetime import date
 import urllib, urllib2
@@ -21,7 +22,7 @@ LN_CLIENT_ID = "755uojkm0y48vy"
 LN_CLIENT_SECRET = "2aXh3DWAJEIYsxbc"
 
 def index(request):
-    message = """<h3>Welcome to Pipedly.</h3><p><a href="/scrape/listscrapeditems?spider_name=underworld">Click here</a> for a list of forum posts scraped from underworld.</p>"""
+    message = """<h3>Welcome to Pipedly.</h3><p><a href="/underworld/dashboard/?name=underworld">Click here</a> for a list of forum posts scraped from underworld.</p>"""
     return HttpResponse(message)
 
 
@@ -139,3 +140,15 @@ def upload_data_for_text_analysis(request):
     except Exception as e:
         response_message = "Failure " + str(e)
     return HttpResponse(response_message)
+
+def show_underworld_dashboard(request):
+    """
+    Show underworld dashboard based on params
+    """
+    logger.debug("Underworld dashboard")
+    dashboard_name = request.GET.get('name')
+    
+    url = show_dashboard(dashboard_name)
+    logger.debug(url)
+
+    return redirect(url)

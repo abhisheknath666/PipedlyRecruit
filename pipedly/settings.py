@@ -120,7 +120,7 @@ INSTALLED_APPS = (
 CRON_CLASSES = [
     'pipedlyapp.cron_jobs.ScrapinghubCronJob',
     'pipedlyapp.cron_jobs.SemantriaResultsLookupCronJob',
-    'pipedlyapp.cron_jobs.SendForAnalysisCronJob',
+    # 'pipedlyapp.cron_jobs.SendForAnalysisCronJob',
 ]
 
 # A sample logging configuration. The only tangible logging
@@ -192,7 +192,7 @@ DATABASES['default'] =  dj_database_url.config()
 import os
 if not os.environ.has_key('DATABASE_URL'):
     # For mysql- mysql://root@localhost:3306/pipedly
-    DATABASES['default'] = dj_database_url.config(default='postgres://abhisheknath@localhost:5432/pipedly')
+    DATABASES['default'] = dj_database_url.config(default='postgres://syiddkywmwsmvh@localhost:5432/pipedly')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
