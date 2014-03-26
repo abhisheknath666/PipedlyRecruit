@@ -148,7 +148,7 @@ def show_underworld_dashboard(request):
     logger.debug("Underworld dashboard")
     dashboard_name = request.GET.get('name')
     
-    url = show_dashboard(dashboard_name)
-    logger.debug(url)
+    return show_dashboard(request, dashboard_name)
+    # logger.debug(url)
 
-    return redirect(url)
+    # return redirect(url)
