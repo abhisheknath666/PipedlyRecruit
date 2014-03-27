@@ -13,8 +13,8 @@ class TextAnalysis:
     __metaclass__=Singleton
 
     def __init__(self):
-        self.consumer_key = "1f21d381-7910-40f2-84f3-3d3caa88dd54"
-        self.consumer_secret = "bce8e2a3-90ff-454e-97c2-26b6165a80eb"
+        self.consumer_key = "3b7ebc6d-2cef-49e5-93a9-1213cc4d7254"
+        self.consumer_secret = "884e4a52-ead6-4245-a9ba-bc41eee94033"
 
         # Creates JSON serializer instance
         serializer = semantria.JsonSerializer()

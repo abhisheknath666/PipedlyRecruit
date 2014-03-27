@@ -35,12 +35,6 @@ def show_dashboard(request, name=''):
     total = reduce(lambda x,y: x+y, values)
     percentages = map(lambda p: p*100.0/total, values)
     labels = [ label[0] for label in rows ]
-    # G = PieC(percentages, encoding='text')
-    # G.margin(100,100,50,50)
-    # G.size(600, 400)
-    # G.color('6656F0')     
-    # G.label(*labels)
-    # return G.url
     
     context = {"percentages":json.dumps(percentages), "labels":json.dumps(labels)}
     return render(request, 'pipedly/underworld_dashboard.html', context)    
