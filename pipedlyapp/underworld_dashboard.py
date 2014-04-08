@@ -4,7 +4,7 @@ from django.db import connection
 from django.shortcuts import render
 import json
 
-crash_bugs_query = '''select 
+churn_query = '''select 
 a.title as theme
 , count(*)
 from 
@@ -23,14 +23,13 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 c.forum_post similar to '(%quit|%abandon%|%give up%|%discontinue%)'
--- and a.title like '%stamina%'
 group by a.title
 having count(*) > 3
 order by count(*) desc
  limit 10'''
 
 def show_dashboard(request, name=''):
-    rows = my_custom_sql(crash_bugs_query)
+    rows = my_custom_sql(churn_query)
     values = [ tup[1] for tup in rows]
     total = reduce(lambda x,y: x+y, values)
     percentages = map(lambda p: p*100.0/total, values)
