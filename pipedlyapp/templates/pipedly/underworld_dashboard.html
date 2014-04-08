@@ -24,6 +24,7 @@
       function drawChart() {
           createCrashChart();
           createChurnChart();
+          createIssuesOverTimeChart();
       }
 
       function createChurnChart() {
@@ -79,6 +80,37 @@
           var chart = new google.visualization.PieChart(document.getElementById('chart2_div'));
           chart.draw(data, options);
       }
+
+      function createIssuesOverTimeChart() {
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Issue');
+          data.addColumn('number', 'Count');
+          var percentages = JSON.parse('{{ counts|safe }}')          
+          var labels = JSON.parse('{{ dates|safe }}')
+          for(var i=0; i<percentages.length; i++) {
+              // document.getElementById("Log").innerHTML = percentages[i]
+              data.addRow([labels[i],percentages[i]]);
+          }
+
+          // Set chart options
+          var options = {'title':'Issues over time',
+                         'width':600,
+                         'height':400,
+                        'backgroundColor': 'none',
+                        'titleTextStyle':{color:'#FFFFFF'},
+                        'legendTextStyle':{color:'#FFFFFF'},
+                         // 'colors':['blue','#9780FF','purple','#9A08FF']
+                         'curveType':'function',
+                         'hAxis':{color:'#FFFFFF'},
+                         'hAxis.gridlines.color':'#FFFFFF',
+                         'vAxis':{color:'#FFFFFF'},
+                        }
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.LineChart(document.getElementById('chart3_div'));
+          chart.draw(data, options);
+      }
     </script>
   </head>
 
@@ -98,6 +130,12 @@
             </td>
         </tr>
         <tr height="400">
+            <td>
+                <table id="chart3_table" width="400" border="0">
+                    <tr><td><div id="chart3_div"></td></tr>
+                </table>
+            </td>    
+        </tr>
     </table>
   </body>    
 </html>
