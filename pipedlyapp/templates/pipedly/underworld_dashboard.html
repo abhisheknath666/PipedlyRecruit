@@ -22,29 +22,61 @@
       // instantiates the pie chart, passes in the data and
       // draws it.
       function drawChart() {
+          createCrashChart();
+          createChurnChart();
+      }
 
+      function createChurnChart() {
           // Create the data table.
           var data = new google.visualization.DataTable();
           data.addColumn('string', 'Issue');
           data.addColumn('number', 'Count');
-          var percentages = JSON.parse('{{ percentages|safe }}')          
-          var labels = JSON.parse('{{ labels|safe }}')
+          var percentages = JSON.parse('{{ churn_percentages|safe }}')          
+          var labels = JSON.parse('{{ churn_labels|safe }}')
           for(var i=0; i<percentages.length; i++) {
               // document.getElementById("Log").innerHTML = percentages[i]
               data.addRow([labels[i],percentages[i]]);
           }
 
           // Set chart options
-          var options = {'title':'Underworld Issue\'s',
+          var options = {'title':'Churn chart',
                          'width':600,
                          'height':400,
                         'pieHole':0.4,
                         'backgroundColor': 'none',
                         'titleTextStyle':{color:'#FFFFFF'},
-                        'legendTextStyle':{color:'#FFFFFF'}}
+                        'legendTextStyle':{color:'#FFFFFF'},
+                        'colors':['blue','#9780FF','purple','#9A08FF']                        }
 
           // Instantiate and draw our chart, passing in some options.
           var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+      }
+
+      function createCrashChart() {
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Issue');
+          data.addColumn('number', 'Count');
+          var percentages = JSON.parse('{{ crash_percentages|safe }}')          
+          var labels = JSON.parse('{{ crash_labels|safe }}')
+          for(var i=0; i<percentages.length; i++) {
+              // document.getElementById("Log").innerHTML = percentages[i]
+              data.addRow([labels[i],percentages[i]]);
+          }
+
+          // Set chart options
+          var options = {'title':'Crash bug chart',
+                         'width':600,
+                         'height':400,
+                        'pieHole':0.4,
+                        'backgroundColor': 'none',
+                        'titleTextStyle':{color:'#FFFFFF'},
+                        'legendTextStyle':{color:'#FFFFFF'},
+                        'colors':['orange','#FFA18B','brown','#FF7413']}
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.PieChart(document.getElementById('chart2_div'));
           chart.draw(data, options);
       }
     </script>
@@ -52,6 +84,20 @@
 
   <body>
     <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
+    <table id="dashboard" height="1000" width="1200">
+        <tr height="400">
+            <td>
+                <table id="chart_table" width="400" border="0">
+                    <tr><td><div id="chart_div"></td></tr>
+                </table>
+            </td>
+            <td>
+                <table id="chart2_table" width="400" border="0">
+                    <tr><td><div id="chart2_div"></td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr height="400">
+    </table>
   </body>    
 </html>

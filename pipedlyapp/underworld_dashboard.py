@@ -22,21 +22,59 @@ a.title not like '%20%'
  and
  char_length(a.title)>2
  and
-c.forum_post similar to '(%quit|%abandon%|%give up%|%discontinue%)'
+c.forum_post similar to '(%quit%|%abandon%|%give up%|%discontinue%)'
+group by a.title
+having count(*) > 3
+order by count(*) desc
+ limit 10'''
+
+crash_query = '''select 
+a.title as theme
+, count(*)
+from 
+ pipedlyapp_semantriatheme a
+,pipedlyapp_semantriaitem b
+, pipedlyapp_scrapinghubitem c
+where 
+a.document_id_id= b.id
+and
+b.document_id_id=c.id
+and 
+a.title not like '%20%'
+ and
+ b.sentiment_polarity = 1
+ and
+ char_length(a.title)>2
+ and
+c.forum_post similar to '(%crash%|%break%|%brok%|%quits%)'
 group by a.title
 having count(*) > 3
 order by count(*) desc
  limit 10'''
 
 def show_dashboard(request, name=''):
+    render_data = {}
+    churn_data = get_churn_data()
+    crash_data = get_crash_data()
+    render_data.update(churn_data)
+    render_data.update(crash_data)
+    return render(request, 'pipedly/underworld_dashboard.html', render_data)
+
+def get_churn_data():
     rows = my_custom_sql(churn_query)
     values = [ tup[1] for tup in rows]
     total = reduce(lambda x,y: x+y, values)
     percentages = map(lambda p: p*100.0/total, values)
     labels = [ label[0] for label in rows ]
-    
-    context = {"percentages":json.dumps(percentages), "labels":json.dumps(labels)}
-    return render(request, 'pipedly/underworld_dashboard.html', context)    
+    return {"churn_percentages":json.dumps(percentages), "churn_labels":json.dumps(labels)}
+
+def get_crash_data():
+    rows = my_custom_sql(crash_query)
+    values = [ tup[1] for tup in rows]
+    total = reduce(lambda x,y: x+y, values)
+    percentages = map(lambda p: p*100.0/total, values)
+    labels = [ label[0] for label in rows ]
+    return {"crash_percentages":json.dumps(percentages), "crash_labels":json.dumps(labels)}    
 
 def my_custom_sql(query):
     cursor = connection.cursor()
