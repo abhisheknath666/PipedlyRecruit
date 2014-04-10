@@ -22,7 +22,7 @@ LN_CLIENT_ID = "755uojkm0y48vy"
 LN_CLIENT_SECRET = "2aXh3DWAJEIYsxbc"
 
 def index(request):
-    message = """<h3>Welcome to Pipedly.</h3><p><a href="/underworld/dashboard/?name=underworld">Click here</a> for a list of forum posts scraped from underworld.</p>"""
+    message = """<h3>Welcome to Pipedly.</h3><p><a href="/underworld/dashboard/?name=underworld">Click here</a> for the underworld issues dashboard.</p>"""
     return HttpResponse(message)
 
 

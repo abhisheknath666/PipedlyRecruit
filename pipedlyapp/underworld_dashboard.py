@@ -53,49 +53,27 @@ order by count(*) desc
  limit 10'''
 
 issues_over_time_query = '''select
-
 c.date as date
-
 , count(*)
-
 from
-
  pipedlyapp_semantriatheme a
-
 ,pipedlyapp_semantriaitem b
-
 , pipedlyapp_scrapinghubitem c
-
 where
-
 a.document_id_id= b.id
-
 and
-
 b.document_id_id=c.id
-
 and
-
 a.title not like '%20%'
-
  and
-
  b.sentiment_polarity = 1
-
  and
-
  char_length(a.title)>2
-
  and
-
 c.forum_post similar to '(%quit|%abandon%|%give up%|%discontinue%)'
-
 group by c.date
-
 having count(*) > 3
-
 order by count(*) desc
-
  limit 10'''
 
 def show_dashboard(request, name=''):
