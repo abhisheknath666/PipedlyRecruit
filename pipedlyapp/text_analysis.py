@@ -1,5 +1,6 @@
-from pipedlyapp.models import SemantriaItem, SemantriaPhrase, SemantriaEntity, SemantriaTheme, SemantriaOpinion, SemantriaTopic, SemantriaEntityToThemes,SENTIMENT_CHOICES, SENTIMENT_CHOICE_DICT, PHRASE_TYPE, PHRASE_TYPE_DICT, ENTITY_TYPE, ENTITY_TYPE_DICT, TOPIC_TYPE, TOPIC_TYPE_DICT, ScrapinghubItem
+from pipedlyapp.models import SemantriaItem, SemantriaPhrase, SemantriaEntity, SemantriaTheme, SemantriaOpinion, SemantriaTopic, SemantriaEntityToThemes,SENTIMENT_CHOICES, SENTIMENT_CHOICE_DICT, PHRASE_TYPE, PHRASE_TYPE_DICT, ENTITY_TYPE, ENTITY_TYPE_DICT, TOPIC_TYPE, TOPIC_TYPE_DICT
 from pipedlyapp.singleton import Singleton
+from pipedlyapp.semantria_scrapinghub_relation import SemantriaScrapinghubUtils
 
 from datetime import date
 import re
@@ -82,7 +83,7 @@ class TextAnalysis:
         if status!="PROCESSED":
             success=False
         if doc_id!=None:
-            doc_id = ScrapinghubItem.objects.filter(pk=int(doc_id))
+            doc_id = SemantriaScrapinghubUtils.scrapinghubitem_for_pk(doc_id)
             if doc_id==None:
                 success=False
         else:

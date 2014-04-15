@@ -108,4 +108,5 @@ class ScrapinghubWrapper:
     def list_items(self, spider_name, limit=1000):
         if ScrapinghubItem.objects.count()<limit:
             return ScrapinghubItem.objects.filter(spider_name=spider_name)
-        return ScrapinghubItem.objects.filter(spider_name=spider_name)[0:limit]        
+        return ScrapinghubItem.objects.filter(spider_name=spider_name)[0:limit]
+        

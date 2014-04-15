@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^scrape/listscrapeditems/$', views.list_scraped_items, name='list scraped items'),
     url(r'^textanalysis/getlatestdata/$', views.upload_data_for_text_analysis, name='upload data for text analysis'),
     url(r'^underworld/dashboard/$', views.show_underworld_dashboard, name='underworld dashboards'),
+    url(r'^underworld/filterposts/$', views.underworld_filter_posts, name='filter underworld posts'),
 )
