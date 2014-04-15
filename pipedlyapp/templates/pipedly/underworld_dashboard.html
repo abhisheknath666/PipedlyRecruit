@@ -25,6 +25,7 @@
           createCrashChart();
           createChurnChart();
           createIssuesOverTimeChart();
+	  createSentimentByThemeChart();
       }
 
       function createChurnChart() {
@@ -122,22 +123,62 @@
                          'vAxis.TextStyle':{'color':'#FFFFFF'},
                          'vAxis.gridlines':{'color':'#FFFFFF'},
                          'vAxis.titleTextStyle':{'color':'#FFFFFF'},
+                         'hAxis.baselineColor': {'color':'#FFFFFF'},
                         }
 
           // Instantiate and draw our chart, passing in some options.
           var chart = new google.visualization.LineChart(document.getElementById('chart3_div'));
           chart.draw(data, options);
       }
+              
+      function createSentimentByThemeChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Theme');
+            data.addColumn('number', 'Neutral');
+            data.addColumn('number', 'Positive');
+            data.addColumn('number', 'Negative');
+	 	  var Theme = JSON.parse('{{ theme|safe }}')      
+		  var Neutral = JSON.parse('{{ neutral|safe }}')          
+		  var Positive = JSON.parse('{{ positive|safe }}')          
+        	  var Negative = JSON.parse('{{ negative|safe }}')
+           for(var i=0; i<Theme.length; i++) {
+              // document.getElementById("Log").innerHTML = percentages[i]
+              data.addRow([Theme[i],Neutral[i],Positive[i],Negative[i]]);	
+          }
+        
+	// var data = google.visualization.arrayToDataTable([
+        //  ['Year', 'Sales', 'Expenses'],
+        //  ['2004',  1000,      400],
+        //  ['2005',  1170,      460],
+        //  ['2006',  660,       1120],
+        //  ['2007',  1030,      540]
+       // ]);
+
+        var options = {
+          title: 'Sentiment By Theme',
+          hAxis: {title: 'Theme', titleTextStyle: {color: '#FFFFFF'}},
+	  'width':600,
+          'height':400,
+          'backgroundColor': 'none',
+          'titleTextStyle':{color:'#FFFFFF'},
+          'legendTextStyle':{color:'#FFFFFF'},
+         // 'colors':['blue','#9780FF','purple','#9A08FF'
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart4_div'));
+        chart.draw(data, options);
+      }
+      
     </script>
   </head>
 
   <body>
-    <!--Div that will hold the pie chart-->
+    <!--Div that will hold the chart-->
     <table id="dashboard" height="1000" width="1200">
-        <tr height="400">
-            <td>
+    <tr>
+            <td >
                 <table id="chart_table" width="400" border="0">
-                    <tr><td><div id="chart_div"></td></tr>
+                    <td><div id="chart_div"></td>
                 </table>
             </td>
             <td>
@@ -145,14 +186,19 @@
                     <tr><td><div id="chart2_div"></td></tr>
                 </table>
             </td>
-        </tr>
-        <tr height="400">
+     </tr>
+     <tr>       
             <td>
                 <table id="chart3_table" width="400" border="0">
                     <tr><td><div id="chart3_div"></td></tr>
                 </table>
-            </td>    
-        </tr>
-    </table>
+            </td>
+            <td>
+                <table id="chart4_table" width="400" border="0">
+                    <tr><td><div id="chart4_div"></td></tr>
+                </table>
+            </td> 
+    </tr>
+        </table>       
   </body>    
 </html>
