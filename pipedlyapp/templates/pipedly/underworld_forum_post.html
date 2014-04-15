@@ -1,0 +1,7 @@
+{% if forum_posts %}
+    <ul>
+    {% for forum_post in forum_posts %}
+        <li>{{ forum_post }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
