@@ -47,11 +47,26 @@
                         'backgroundColor': 'none',
                         'titleTextStyle':{color:'#FFFFFF'},
                         'legendTextStyle':{color:'#FFFFFF'},
-                        'colors':['blue','#9780FF','purple','#9A08FF']                        }
+                        'colors':['blue','#9780FF','purple','#9A08FF'],
+                        }
 
           // Instantiate and draw our chart, passing in some options.
           var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
           chart.draw(data, options);
+
+          function selectHandler() {
+              var selectedItems = chart.getSelection();
+              if(!(selectedItems && selectedItems.length>0)) {
+                  return;
+              }
+              var selectedItem = selectedItems[0];
+              if (selectedItem) {
+                  var value = data.getValue(selectedItem.row, 0);
+                  window.location.href = "../filterposts?"+"theme="+value;
+              }
+          }          
+
+          google.visualization.events.addListener(chart, 'select', selectHandler);
       }
 
       function createCrashChart() {

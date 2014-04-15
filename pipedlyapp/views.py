@@ -10,6 +10,7 @@ from pipedlyapp.linkedin_controller import lnWrapper
 from pipedlyapp.web_scraper import ScrapinghubWrapper
 from pipedlyapp.text_analysis import TextAnalysis
 from pipedlyapp.underworld_dashboard import *
+from pipedlyapp.semantria_scrapinghub_relation import SemantriaScrapinghubUtils
 
 from datetime import date
 import urllib, urllib2
@@ -149,6 +150,16 @@ def show_underworld_dashboard(request):
     dashboard_name = request.GET.get('name')
     
     return show_dashboard(request, dashboard_name)
-    # logger.debug(url)
 
-    # return redirect(url)
+def underworld_filter_posts(request):
+    """
+    Filter underworld posts based on params
+    """
+    theme = request.GET.get('theme')
+    if not theme:
+        return HttpResponse("RPC requires theme")
+    sobj = SemantriaScrapinghubUtils()
+    filtered_scrapinghubitems = sobj.filter_scrapinghubitem_on_semantria_theme('underworld',theme)
+    forum_posts = [ row.forum_post for row in filtered_scrapinghubitems ]
+    context = { "forum_posts" : forum_posts }
+    return render(request, 'pipedly/underworld_forum_post.html', context)

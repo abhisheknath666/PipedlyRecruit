@@ -158,6 +158,11 @@ LOGGING = {
             'propogate': True,
             'level' : 'DEBUG',
         },
+        'semantria_scrapinghub_relation' : {
+            'handlers' : ['null'],
+            'propogate' : True,
+            'level' : 'DEBUG',
+        },
         'crons': {
             'handlers': ['null'],
             'propogate': True,
