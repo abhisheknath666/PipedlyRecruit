@@ -17,9 +17,9 @@ class ScrapinghubItem(models.Model):
         return self.spider_name
     spider_name = models.CharField(max_length=30)
     forum_post = models.TextField()
-    title = models.CharField(max_length=1024)
+    title = models.CharField(max_length=1024,blank=True,null=True)
     url = models.CharField(max_length=200)
-    date = models.DateField('forum post date')
+    date = models.DateField('forum post date',blank=True,null=True)
 
 POSITIVE = 0
 NEGATIVE = 1

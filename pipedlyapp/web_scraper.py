@@ -4,7 +4,7 @@ from scrapinghub import Connection
 from pipedlyapp.models import ScrapinghubItem
 from pipedlyapp.singleton import Singleton
 
-from datetime import date
+from datetime import date,datetime
 import re
 import logging
 logger = logging.getLogger('web_scraper')
@@ -69,10 +69,21 @@ class ScrapinghubWrapper:
 
     def grab_latest_items(self, spider_name):
         def create_items(job):
+            def parse_date_from_string(date_str):
+                # Format expected- 07-25-2013
+                parsed_date = date.today()
+                try:
+                    parsed_date = datetime.strptime(date_str,"%m-%d-%Y").date()                    
+                except:
+                    logger.debug("Failed to parse date: %s", date_str.encode('utf-8'))
+                return parsed_date
+                
             for item_dict in job.items():
                 forum_posts = item_dict.get("forumpost",None)
                 title = item_dict.get("title",None)
                 url = item_dict.get("url",None)
+                parsed_date = item_dict.get("date","")
+                parsed_date = parse_date_from_string(parsed_date)
                 if not forum_posts:
                     continue
                 for forum_post in forum_posts:
@@ -82,7 +93,9 @@ class ScrapinghubWrapper:
                                 continue
                             pruned_item = self._prune_white_spaces(forum_post)
                             # logger.debug("Pruned item: %s", pruned_item.encode('utf-8'))
-                            ScrapinghubItem.objects.get_or_create(spider_name=spider_name, forum_post=pruned_item, title=title, url=url, date=date.today())
+                            ScrapinghubItem.objects.get_or_create(spider_name=spider_name, forum_post=pruned_item, title=title, url=url, defaults={'date':parsed_date})
+
+                            
         if self._cur_jobs.has_key(spider_name):
             job = self._cur_jobs[spider_name]
             print job.id, " ", job['state']
