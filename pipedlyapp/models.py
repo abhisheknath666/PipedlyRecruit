@@ -39,7 +39,7 @@ class SemantriaItem(models.Model):
     def __unicode__(self):
         return self.config_id
     config_id = models.CharField(max_length=50,blank=True,null=True)
-    document_id = models.OneToOneField('ScrapinghubItem')
+    document_id = models.OneToOneField('ScrapinghubItem',on_delete=models.CASCADE)
     source_text = models.TextField(blank=True,null=True)
     tag = models.CharField(max_length=1000,blank=True,null=True)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)
@@ -60,7 +60,7 @@ PHRASE_TYPE_DICT = {
 class SemantriaPhrase(models.Model):
     def __unicode__(self):
         return self.title
-    document_id = models.ForeignKey('SemantriaItem')
+    document_id = models.ForeignKey('SemantriaItem',on_delete=models.CASCADE)
     title = models.CharField(max_length=1000,blank=True,null=True)
     sentiment_score = models.FloatField(blank=True,null=True)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)
@@ -74,7 +74,7 @@ class SemantriaPhrase(models.Model):
 class SemantriaTheme(models.Model):
     def __unicode__(self):
         return self.theme
-    document_id = models.ForeignKey('SemantriaItem')
+    document_id = models.ForeignKey('SemantriaItem',on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)
     sentiment_score = models.FloatField(blank=True, null=True)
@@ -100,7 +100,7 @@ ENTITY_TYPE_DICT = {
 class SemantriaEntity(models.Model):
     def __unicode__(self):
         return self.entity
-    document_id = models.ForeignKey('SemantriaItem')
+    document_id = models.ForeignKey('SemantriaItem',on_delete=models.CASCADE)
     entity_type = models.IntegerField(choices=ENTITY_TYPE,default=NAMED,blank=True,null=True)
     title = models.CharField(max_length=10000)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL,blank=True, null=True)
@@ -116,13 +116,13 @@ class SemantriaEntity(models.Model):
 class SemantriaEntityToThemes(models.Model):
     def __unicode__(self):
         return self.entity.entity
-    entity = models.ForeignKey('SemantriaEntity')
-    theme = models.ForeignKey('SemantriaTheme')
+    entity = models.ForeignKey('SemantriaEntity',on_delete=models.CASCADE)
+    theme = models.ForeignKey('SemantriaTheme',on_delete=models.CASCADE)
 
 class SemantriaOpinion(models.Model):
     def __unicode__(self):
         return self.category_name
-    document_id = models.ForeignKey('SemantriaItem')
+    document_id = models.ForeignKey('SemantriaItem',on_delete=models.CASCADE)
     quotation = models.CharField(max_length=1000, blank=True, null=True)
     speaker = models.CharField(max_length=1000, blank=True, null=True)
     topic = models.CharField(max_length=10000, blank=True, null=True)
@@ -148,7 +148,7 @@ TOPIC_TYPE_DICT = {
 class SemantriaTopic(models.Model):
     def __unicode__(self):
         return self.query
-    document_id = models.ForeignKey('SemantriaItem')
+    document_id = models.ForeignKey('SemantriaItem',on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
     topic_type = models.IntegerField(choices=TOPIC_TYPE, default=CONCEPT, blank=True, null=True)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)
