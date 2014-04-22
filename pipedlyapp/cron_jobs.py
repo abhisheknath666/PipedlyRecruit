@@ -3,6 +3,7 @@ from web_scraper import ScrapinghubWrapper
 from text_analysis import TextAnalysis
 from pipedlyapp.models import SemantriaItem
 from django.db.models import Max
+from pipedlyapp.semantria_scrapinghub_relation import SemantriaScrapinghubUtils
 
 import logging
 logging.basicConfig()
@@ -34,7 +35,7 @@ class SemantriaResultsLookupCronJob(CronJobBase):
         TextAnalysis().scan_for_results()
     
 class SendForAnalysisCronJob(CronJobBase):
-    RUN_EVERY_MINS = 24*60
+    RUN_EVERY_MINS = 15
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'pipedlyapp.cron_jobs.SendForAnalysisCronJob'
@@ -49,7 +50,8 @@ class SendForAnalysisCronJob(CronJobBase):
             max_document_id = 0
 
         logger.debug("Max document id: %d",max_document_id)
-        scraped_objects = ScrapinghubWrapper().get_scraped_items('underworld',max_document_id)
+        scraped_objects = SemantriaScrapinghubUtils().scraped_items_not_processed_in_semantria()
+        logger.debug("%s",str(scraped_objects))
         try:
             for item in scraped_objects:
                 TextAnalysis().send_item_for_analysis(item.pk, item.forum_post)
