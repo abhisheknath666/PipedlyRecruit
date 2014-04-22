@@ -24,7 +24,7 @@ a.title not like '%20%'
  and
 c.forum_post similar to '(%quit%|%abandon%|%give up%|%discontinue%)'
 group by a.title
-having count(*) > 3
+having count(*) > 1
 order by count(*) desc
  limit 10'''
 
@@ -48,7 +48,7 @@ a.title not like '%20%'
  and
 c.forum_post similar to '(%crash%|%break%|%brok%|%quits%)'
 group by a.title
-having count(*) > 3
+having count(*) > 1
 order by count(*) desc
  limit 10'''
 
@@ -72,7 +72,7 @@ a.title not like '%20%'
  and
 c.forum_post similar to '(%quit|%abandon%|%give up%|%discontinue%)'
 group by c.date
-having count(*) > 3
+having count(*) > 1
 order by count(*) desc
 limit 10'''
  
@@ -86,7 +86,7 @@ end as Sentiment,
 count(*) as Count
 from pipedlyapp_semantriaentity a,
     (select title as theme from pipedlyapp_semantriatheme
-  group by title having count(*) >100) b, 
+  group by title having count(*) >1) b, 
   pipedlyapp_semantriatheme c
     where a.document_id_id=c.document_id_id 
     and b.theme=c.title
