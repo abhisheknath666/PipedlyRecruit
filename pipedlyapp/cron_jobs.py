@@ -35,7 +35,7 @@ class SemantriaResultsLookupCronJob(CronJobBase):
         TextAnalysis().scan_for_results()
     
 class SendForAnalysisCronJob(CronJobBase):
-    RUN_EVERY_MINS = 15
+    RUN_EVERY_MINS = 60
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'pipedlyapp.cron_jobs.SendForAnalysisCronJob'

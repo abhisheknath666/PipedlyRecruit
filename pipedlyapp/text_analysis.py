@@ -83,7 +83,7 @@ class TextAnalysis:
         if status!="PROCESSED":
             success=False
         if doc_id!=None:
-            doc_id = SemantriaScrapinghubUtils.scrapinghubitem_for_pk(doc_id)
+            doc_id = SemantriaScrapinghubUtils().scrapinghubitem_for_pk(doc_id)
             if doc_id==None:
                 success=False
         else:
