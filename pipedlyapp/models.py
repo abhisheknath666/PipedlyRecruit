@@ -73,7 +73,7 @@ class SemantriaPhrase(models.Model):
 
 class SemantriaTheme(models.Model):
     def __unicode__(self):
-        return self.theme
+        return self.title
     document_id = models.ForeignKey('SemantriaItem',on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
     sentiment_polarity = models.IntegerField(choices=SENTIMENT_CHOICES, default=NEUTRAL, blank=True, null=True)

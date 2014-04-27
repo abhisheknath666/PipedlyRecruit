@@ -14,8 +14,8 @@ class TextAnalysis:
     __metaclass__=Singleton
 
     def __init__(self):
-        self.consumer_key = "c147f3e9-9349-4351-93eb-804615096d96"
-        self.consumer_secret = "847b7233-19da-4838-9cbf-90844ade76a0"
+        self.consumer_key = "dcc2e915-5a22-f548-4795-6502f5485c78"
+        self.consumer_secret = "7fb934a7-67e6-328a-53bb-b283962855b4"
 
         # Creates JSON serializer instance
         serializer = semantria.JsonSerializer()
@@ -52,7 +52,7 @@ class TextAnalysis:
         doc = {"id": str(document_id), "text": text[:8000]}
         # Queues document for processing on Semantria service
         status = self.session.queueDocument(doc)
-        # Check status from Semantria service
+        # Check status from Semantria service        
         if status == 202:
             logger.debug("%s document queued successfully.", doc["id"])
         

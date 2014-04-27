@@ -53,6 +53,20 @@ class ScrapinghubWrapper:
             input_str = highpoints.sub(u'\u25FD', input_str)
         return input_str
 
+    def _clean_up_post(self, input_str):
+        """
+        Remove unwanted substrings
+        """
+        input_str = self._prune_white_spaces(input_str)
+        # remove incrementing post numbers
+        posts_matcher = re.compile('Posts [0-9,]+')
+        input_str = posts_matcher.sub('',input_str)        
+
+        # remove incrementing blog entries
+        blog_entries_matcher = re.compile('Blog Entries [0-9,]+')
+        input_str = blog_entries_matcher.sub('',input_str)
+        return input_str        
+
     def _is_post_redundant(self, post):
         """
         Filter on substrings to identify posts
@@ -91,7 +105,7 @@ class ScrapinghubWrapper:
                         if len(forum_post)>POST_THRESHOLD_LENGTH:
                             if self._is_post_redundant(forum_post):
                                 continue
-                            pruned_item = self._prune_white_spaces(forum_post)
+                            pruned_item = self._clean_up_post(forum_post)
                             # logger.debug("Pruned item: %s", pruned_item.encode('utf-8'))
                             ScrapinghubItem.objects.get_or_create(spider_name=spider_name, forum_post=pruned_item, title=title, url=url, defaults={'date':parsed_date})
 
