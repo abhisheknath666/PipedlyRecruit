@@ -54,9 +54,11 @@ order by count desc)a
 where a.row_num <7
 limit 10'''
 
-crash_query = '''select 
-a.title as theme
-, count(*)
+crash_query = '''select a.reason, a.count from 
+(select 
+a.title as reason
+,count(*) as count
+,row_number() OVER (ORDER BY count(*) desc) as row_num
 from 
  pipedlyapp_semantriatheme a
 ,pipedlyapp_semantriaitem b
@@ -75,8 +77,34 @@ a.title not like '%20%'
 c.forum_post similar to '(%crash%|%break%|%brok%|%quits%)'
 group by a.title
 having count(*) > 1
-order by count(*) desc
- limit 10'''
+ union
+select 
+a.title as reason
+, count(*) as count
+,row_number() OVER (ORDER BY count(*) desc) as row_numa
+from 
+ pipedlyapp_semantriaentity a
+,pipedlyapp_semantriaitem b
+, pipedlyapp_scrapinghubitem c
+where 
+a.document_id_id= b.id
+and
+b.document_id_id=c.id
+and 
+a.title not like '%20%'
+ and
+ b.sentiment_polarity = 1
+ and
+ char_length(a.title)>2
+ and
+ char_length(a.title)<20
+ and
+c.forum_post similar to '(%crash%|%break%|%brok%|%quits%)'
+group by a.title
+having count(*) > 1
+order by count desc)a 
+where a.row_num <7
+limit 10'''
 
 issues_over_time_query = '''select
 c.date as date
