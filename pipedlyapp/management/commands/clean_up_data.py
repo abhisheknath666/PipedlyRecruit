@@ -12,4 +12,10 @@ class Command(BaseCommand):
             matches = SemantriaTheme.objects.filter(title__icontains=bad_theme)
             matches.delete()
 
+        bad_entity_list = [r'#[0-9]+']
+        for bad_entity in bad_entity_list:
+            matches = SemantriaEntity.objects.filter(title__iregex=bad_entity)
+            matches.delete()
+        
+
         

@@ -99,7 +99,7 @@ ENTITY_TYPE_DICT = {
 
 class SemantriaEntity(models.Model):
     def __unicode__(self):
-        return self.entity
+        return self.title
     document_id = models.ForeignKey('SemantriaItem',on_delete=models.CASCADE)
     entity_type = models.IntegerField(choices=ENTITY_TYPE,default=NAMED,blank=True,null=True)
     title = models.CharField(max_length=10000)
