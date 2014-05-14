@@ -156,10 +156,15 @@ def underworld_filter_posts(request):
     Filter underworld posts based on params
     """
     theme = request.GET.get('theme')
-    if not theme:
-        return HttpResponse("RPC requires theme")
+    entity = request.GET.get('entity')
+    if not theme or not entity:
+        return HttpResponse("RPC requires theme/entity")
     sobj = SemantriaScrapinghubUtils()
-    filtered_scrapinghubitems = sobj.filter_scrapinghubitem_on_semantria_theme('underworld',theme)
-    forum_posts = [ row.forum_post for row in filtered_scrapinghubitems ]
+    filtered_by_theme = sobj.filter_scrapinghubitem_on_semantria_theme('underworld',theme)
+    filtered_by_entity =sobj.filter_scrapinghubitem_on_semantria_entity('underworld',entity)
+    forum_posts = []
+    forum_posts.extend([ row.forum_post for row in filtered_by_theme ])
+    forum_posts.extend([ row.forum_post for row in filtered_by_entity ])    
+    
     context = { "forum_posts" : forum_posts }
     return render(request, 'pipedly/underworld_forum_post.html', context)
