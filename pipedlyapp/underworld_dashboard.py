@@ -148,8 +148,28 @@ group by date
 order by date asc
 limit 10'''
  
-sentiment_by_theme_query = '''select * from crosstab( 'select
-b.theme as Theme, 
+sentiment_by_theme_query = '''(select a.theme, a.neutral, a.negative, a.positive from (select * from crosstab( 'select
+a.title as Topic, 
+case 
+when a.sentiment_polarity = 2 then ''Neutral'' 
+when a.sentiment_polarity = 1 then ''Negative''
+when a.sentiment_polarity = 0 then ''Positive'' 
+end as Sentiment, 
+count(*) as Count
+from pipedlyapp_semantriaentity a
+     where a.title not like ''%20%''
+     and a.title not like ''%Blog%''
+     and a.title not like ''%#%''
+     and char_length(a.title)>2
+     and char_length(a.title)<20
+group by
+    a.title,
+    a.sentiment_polarity
+    order by topic') as ct(Theme varchar(255), Neutral bigint, Negative bigint, Positive bigint))a  
+    order by (COALESCE(neutral,0) + COALESCE(negative,0)) desc limit 10)
+ union 
+ (select a.theme as Theme, a.Neutral as Neutral, a.Negative as Negative, a.Positive as Positive from (select * from crosstab( 'select
+b.theme as Topic, 
 case 
 when a.sentiment_polarity = 2 then ''Neutral'' 
 when a.sentiment_polarity = 1 then ''Negative'' 
@@ -163,11 +183,16 @@ from pipedlyapp_semantriaentity a,
     where a.document_id_id=c.document_id_id 
     and b.theme=c.title
     and c.title not like ''%Blog%''
+    and c.title not like ''%20%''
+    and char_length(c.title)>2
+    and char_length(c.title)<20
 group by
     b.theme,
     a.sentiment_polarity
-  order by theme
-   limit 30') as ct(Theme varchar(255), Neutral bigint, Negative bigint, Positive bigint);'''
+    order by theme') as ct(Theme varchar(255), Neutral bigint, Negative bigint, Positive bigint))a
+  where Neutral>0 and Negative>0 and Positive>0 
+  order by (COALESCE(Neutral,0) + COALESCE(Negative,0) + COALESCE(Positive,0)) desc limit 10)
+   ;'''
 
 def show_dashboard(request, name=''):
     render_data = {}
