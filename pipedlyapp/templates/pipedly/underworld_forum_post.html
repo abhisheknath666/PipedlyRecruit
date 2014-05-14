@@ -1,7 +1,9 @@
+<html>
 {% if forum_posts %}
     <ul>
     {% for forum_post in forum_posts %}
-        <li>{{ forum_post }}</li>
+        <p>{{ forum_post|safe }}</p>
     {% endfor %}
     </ul>
 {% endif %}
+</html>

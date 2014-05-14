@@ -155,6 +155,11 @@ def underworld_filter_posts(request):
     """
     Filter underworld posts based on params
     """
+    def apply_highlight(post,highlight_text):
+        replacement_text = "<mark>"+highlight_text+"</mark>"
+        highlighted_text = post.replace(highlight_text,replacement_text)
+        return highlighted_text
+    
     theme = request.GET.get('theme')
     entity = request.GET.get('entity')
     if not theme or not entity:
@@ -163,8 +168,9 @@ def underworld_filter_posts(request):
     filtered_by_theme = sobj.filter_scrapinghubitem_on_semantria_theme('underworld',theme)
     filtered_by_entity =sobj.filter_scrapinghubitem_on_semantria_entity('underworld',entity)
     forum_posts = []
-    forum_posts.extend([ row.forum_post for row in filtered_by_theme ])
-    forum_posts.extend([ row.forum_post for row in filtered_by_entity ])    
+
+    forum_posts.extend([ apply_highlight(row.forum_post,theme) for row in filtered_by_theme ])
+    forum_posts.extend([ apply_highlight(row.forum_post,entity) for row in filtered_by_entity ])    
     
     context = { "forum_posts" : forum_posts }
     return render(request, 'pipedly/underworld_forum_post.html', context)

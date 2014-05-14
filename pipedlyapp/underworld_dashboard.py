@@ -106,9 +106,8 @@ order by count desc)a
 where a.row_num <7
 limit 10'''
 
-issues_over_time_query = '''select
+issues_over_time_query = '''select a.date, count(*) as count from ((select
 c.date as date
-, count(*)
 from
  pipedlyapp_semantriatheme a
 ,pipedlyapp_semantriaitem b
@@ -124,10 +123,29 @@ a.title not like '%20%'
  and
  char_length(a.title)>2
  and
-c.forum_post similar to '(%quit|%abandon%|%give up%|%discontinue%)'
-group by c.date
-having count(*) > 1
-order by count(*) desc
+c.forum_post similar to '(%quit|%abandon%|%give up%|%discontinue%)')
+union all
+(select
+c.date as date
+from
+ pipedlyapp_semantriaentity a
+,pipedlyapp_semantriaitem b
+, pipedlyapp_scrapinghubitem c
+where
+a.document_id_id= b.id
+and
+b.document_id_id=c.id
+and
+a.title not like '%20%'
+ and
+ b.sentiment_polarity = 1
+ and
+ char_length(a.title)>2
+ and
+c.forum_post similar to '(%quit|%abandon%|%give up%|%discontinue%)')) a
+group by date
+-- having count(*) > 1
+order by date asc
 limit 10'''
  
 sentiment_by_theme_query = '''select * from crosstab( 'select
