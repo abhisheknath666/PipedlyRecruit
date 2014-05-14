@@ -16,6 +16,11 @@ class SemantriaScrapinghubUtils:
         filtered_scrapinghubitems = ScrapinghubItem.objects.filter(pk__in=(SemantriaItem.objects.filter(semantriatheme__title__icontains=theme).values_list('document_id',flat=True)))
         return filtered_scrapinghubitems
 
+    def filter_scrapinghubitem_on_semantria_entity(self, spider_name, entity):
+        filtered_scrapinghubitems = ScrapinghubWrapper().list_items(spider_name,100000)
+        filtered_scrapinghubitems = ScrapinghubItem.objects.filter(pk__in=(SemantriaItem.objects.filter(semantriaentity__title__icontains=entity).values_list('document_id',flat=True)))
+        return filtered_scrapinghubitems        
+
     def scraped_items_not_processed_in_semantria(self):
         filtered_scrapinghubitems = ScrapinghubItem.objects.exclude(pk__in=(SemantriaItem.objects.all().values_list('document_id',flat=True)))
         return filtered_scrapinghubitems
