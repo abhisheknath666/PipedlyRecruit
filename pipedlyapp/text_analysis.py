@@ -78,7 +78,8 @@ class TextAnalysis:
         source_text = result.get("source_text",None)
         status = result.get("status",None)
 
-        # logger.debug("doc_id: %s config_id: %s tag: %s sentiment_polarity: %s sentiment_score: %s document_summary: %s source_text: %s status: %s", str(doc_id), str(config_id), str(tag), str(sentiment_polarity), str(sentiment_score), str(document_summary), str(source_text), str(status))
+        logger.debug("doc_id: %s config_id: %s tag: %s sentiment_polarity: %s sentiment_score: %s document_summary: %s source_text: %s status: %s", str(doc_id), str(config_id), str(tag), str(sentiment_polarity), str(sentiment_score), str(document_summary), str(source_text), str(status))
+        
         success = True
         if status!="PROCESSED":
             success=False

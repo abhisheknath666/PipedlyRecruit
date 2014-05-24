@@ -89,7 +89,7 @@ class ScrapinghubWrapper:
                 try:
                     parsed_date = datetime.strptime(date_str,"%m-%d-%Y").date()                    
                 except:
-                    logger.debug("Failed to parse date: %s", date_str.encode('utf-8'))
+                    logger.debug("Failed to parse date: %s", str(date_str))
                 return parsed_date
                 
             for item_dict in job.items():
