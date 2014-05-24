@@ -1,9 +1,18 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'pipedlyapp/style.css' %}" />
+
 <html>
+<header>
+    <div id="header"></div>
+  </header>
+<body>
 {% if forum_posts %}
-    <ul>
+    <ul class="body_wrapper">
     {% for forum_post in forum_posts %}
-        <p>{{ forum_post|safe }}</p>
+        <p class="postbody">{{ forum_post|safe }}</p>
     {% endfor %}
     </ul>
 {% endif %}
+</body>
 </html>

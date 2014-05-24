@@ -16,6 +16,7 @@ from datetime import date
 import urllib, urllib2
 import hashlib
 import json
+import re
 
 logger = logging.getLogger("views")
 
@@ -155,22 +156,30 @@ def underworld_filter_posts(request):
     """
     Filter underworld posts based on params
     """
-    def apply_highlight(post,highlight_text):
-        replacement_text = "<mark>"+highlight_text+"</mark>"
-        highlighted_text = post.replace(highlight_text,replacement_text)
-        return highlighted_text
-    
+    def apply_highlight(post,highlight_text,keywords):
+        for keyword in keywords:
+        	replacement_keyword = "<mark>"+str(keyword)+"</mark>"
+		post = post.replace(keyword,replacement_keyword)
+	replacement_text = "<mark>"+highlight_text+"</mark>"
+	highlight_text_insensitive = re.compile(re.escape(highlight_text), re.IGNORECASE)
+	highlighted_text = highlight_text_insensitive.sub(replacement_text, post)
+	#highlighted_text = post.replace(highlight_text.lower(),replacement_text)
+	return highlighted_text
+
     theme = request.GET.get('theme')
     entity = request.GET.get('entity')
+    keywords = ['quit','abandon','give up','discontinue','break','broke','crash','quits']
     if not theme or not entity:
         return HttpResponse("RPC requires theme/entity")
     sobj = SemantriaScrapinghubUtils()
     filtered_by_theme = sobj.filter_scrapinghubitem_on_semantria_theme('underworld',theme)
-    filtered_by_entity =sobj.filter_scrapinghubitem_on_semantria_entity('underworld',entity)
+    filtered_by_entity = sobj.filter_scrapinghubitem_on_semantria_entity('underworld',entity)
+    #filters = str('give up') 
     forum_posts = []
 
-    forum_posts.extend([ apply_highlight(row.forum_post,theme) for row in filtered_by_theme ])
-    forum_posts.extend([ apply_highlight(row.forum_post,entity) for row in filtered_by_entity ])    
-    
+    forum_posts.extend([ apply_highlight(row.forum_post,theme,keywords) for row in filtered_by_theme ])
+    forum_posts.extend([ apply_highlight(row.forum_post,entity,keywords) for row in filtered_by_entity ])    
+    #forum_posts.extend([ apply_highlight(row.forum_post,filters) for row in filtered_by_theme]) 
+    #forum_posts.extend([ apply_highlight(row.forum_post,filters) for row in filtered_by_entity]) 
     context = { "forum_posts" : forum_posts }
     return render(request, 'pipedly/underworld_forum_post.html', context)
