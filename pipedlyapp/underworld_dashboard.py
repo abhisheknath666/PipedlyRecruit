@@ -605,14 +605,30 @@ group by
 
 def show_dashboard(request, name=''):
     render_data = {}
-    churn_data = get_churn_data()
-    crash_data = get_crash_data()
-    issues_overtime_data = get_issues_over_time()
-    sentiment_by_theme = get_sentiment_by_theme()
-    render_data.update(churn_data)
-    render_data.update(crash_data)
-    render_data.update(issues_overtime_data)
-    render_data.update(sentiment_by_theme)
+    try:
+        churn_data = get_churn_data()
+        render_data.update(churn_data)        
+    except:
+        logger.debug("Failed to get churn data")
+
+    try:
+        crash_data = get_crash_data()
+        render_data.update(crash_data)
+    except:
+        logger.debug("Failed to get crash data")
+
+    try:
+        issues_overtime_data = get_issues_over_time()
+        render_data.update(issues_overtime_data)
+    except:
+        logger.debug("Failed to get issues over time")
+
+    try:
+        sentiment_by_theme = get_sentiment_by_theme()
+        render_data.update(sentiment_by_theme)
+    except:
+        logger.debug("Failed to get sentiments by theme")
+        
     return render(request, 'pipedly/underworld_dashboard.html', render_data)
 
 def get_churn_data():
