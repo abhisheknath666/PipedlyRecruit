@@ -4,6 +4,11 @@ from django.db import connection
 from django.shortcuts import render
 import json
 
+import logging
+
+logger = logging.getLogger('underworld_dashboard')
+
+
 churn_query = '''select a.reason, a.count from 
 (select
 initcap(a.title) as reason

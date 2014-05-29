@@ -183,6 +183,11 @@ LOGGING = {
             'propogate': True,
             'level' : 'DEBUG',
         },
+        'underworld_dashboard': {
+            'handlers': ['null'],
+            'propogate': True,
+            'level' : 'DEBUG',
+        },        
     }
 }
 
