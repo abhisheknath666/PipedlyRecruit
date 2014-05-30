@@ -291,6 +291,9 @@ group by a.title
 having count(*) > 1
 order by count desc)a 
 where a.row_num <7
+-- limit 10
+ and reason not in ('#Theoriginalvampireofue', 'Gettin Hit', 'Chelsea')
+  and reason not like '%#Theoriginal%'
 limit 10'''
 
 crash_query = '''select a.reason, a.count from 
