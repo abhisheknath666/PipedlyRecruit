@@ -516,9 +516,57 @@ and position('quits' in c.forum_post) >0
 and ((position(a.title in c.forum_post)) - (position('quits' in c.forum_post))) < 200 
 and ((position(a.title in c.forum_post)) - (position('quits' in c.forum_post))) > -200
 group by a.title
-having count(*) > 1)a 
-where a.row_num <7
-limit 10'''
+having count(*) > 1
+union 
+select
+initcap(a.title) as reason
+,count(*) as count
+,row_number() OVER (ORDER BY count(*) desc) as row_num
+from 
+ pipedlyapp_semantriaentity a
+,pipedlyapp_semantriaitem b
+, pipedlyapp_scrapinghubitem c
+where
+a.document_id_id= b.id
+and
+b.document_id_id=c.id
+and
+a.title not like '%20%'
+ and
+ char_length(a.title)>2
+ and
+ a.title not in ('View Articles','Matt','Mark','Lucus')
+and
+a.title = 'Skull King'
+group by a.title
+having count(*) > 1
+union
+select
+initcap(a.title) as reason
+,count(*) as count
+,row_number() OVER (ORDER BY count(*) desc) as row_num
+from 
+ pipedlyapp_semantriatheme a
+,pipedlyapp_semantriaitem b
+, pipedlyapp_scrapinghubitem c
+where
+a.document_id_id= b.id
+and
+b.document_id_id=c.id
+and
+a.title not like '%20%'
+ and
+ char_length(a.title)>2
+ and
+ a.title not in ('View Articles','Matt','Mark','Lucus')
+and
+a.title = 'losing money'
+group by a.title
+having count(*) > 1
+)a 
+ where a.row_num <8
+ and reason in ('Health Meter', 'Skull King', 'Losing Money', 'Overlooked Warehouses', 'Building Upgrades', 'Extra Refill','Health Meter')
+-- limit 10'''
 
 issues_over_time_query = '''select a.date, count(*) as count from ((select
 c.date as date
