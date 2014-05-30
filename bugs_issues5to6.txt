@@ -1,0 +1,86 @@
+[
+    {
+        "text": "Issue Description - I received a new lieutenant and the lieutenant button showed a message icon. When I try to access the lieutenant page the game freezes for a second then closes. The app is actually still running, but it takes me to my phone's home screen. It reopens without any issue and all other game functions seem to be working. However, anytime I try to open the lieutenants page it closes. I tried shutting down the app and restarting it; also tried powering down the phone. No luck. Any suggestions?",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page5",
+        "date": "06-06-2013, 04:22 PM"
+    },
+    {
+        "text": "Decapitate states that executeat500. That is actually not the case as it needs to be under 500..",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page5",
+        "date": "06-07-2013, 08:45 AM"
+    },
+    {
+        "text": "Bug or feature? I added 3* Scorpion mid-battle eve and tried to execute over 600 health, of course failed, but message states must be 412 health, which should really read under 412 health.. However, don't think I should be able to add LT mid-battle and change my execute threshold. ;-) .Couldn't find someone between 400-411 to try to see if actually worked, but error message gave me idea it might. Will attempt next battle and update.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page5",
+        "date": "06-08-2013, 05:12 PM"
+    },
+    {
+        "text": "I am just wondering if anyone is facing or ever encountered the same issue. All along I had no issues with gifting up until 2 days ago. Now, whenever I select 'Gift', a message would popup saying: Sorry! Error getting data. I have closed the app from the multitasking bar and reloaded it, and also deleted the app and reinstalled via app store but the issue remains.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page5",
+        "date": "06-10-2013, 01:13 AM"
+    },
+    {
+        "text": "Issue Description - I have a problem with the daily login bonuses. Although I have been a daily player for the past weeks (this can be verified), for some reason my daily login counter gets reset. Usually when I have 3-5 days left to get the big reward. Also, I don't see that daily login screen every day. This is really frustrating and I don't know how to fix it.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page5",
+        "date": "06-10-2013, 06:56 AM"
+    },
+    {
+        "text": "When looking for a public boss to fight, current players is 1 95% of the time and are incorrect 100% of the time. Everywhere else the correct # of current players show up (Your List, Empire List, etc).",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page5",
+        "date": "06-10-2013, 01:21 PM"
+    },
+    {
+        "text": "I was at 145k income , clicked to build my first island which would take me to 155k an hour and my achieve tab started flashing goals. Clicked on tab and noticed the achieve for getting 150k income is missing and now says 200k for achieve. Basically I haven't received any fp or skill points or whatever for 150k income achieve ( unless my heads screwed and there was never an achieve for 150k lol )",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page5",
+        "date": "06-10-2013, 01:35 PM"
+    },
+    {
+        "text": "I saw the goal thing flashing and went on achieves to collect whatever it was and the only thing hat had happened was I'd passed 150k earnings.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page6",
+        "date": "06-10-2013, 07:36 PM"
+    },
+    {
+        "text": "Counter is back to 12 days left now.This way I will never be able to get a 14 day reward. Please fix this bug..Could somebody sey my counter back? You can verify thatI logged in everyday",
+        "title": "BugandIssueThreadv1.0",
+        "pageUrl": "http: //underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page6",
+        "date": "06-12-2013,07: 15AM"
+    },
+    {
+        "text": "Issue Description-We just start a war and the opponents got their HQ in #4.Trying toaccess their HQ, all our empire members application crash when we try entering the building. Nothing to do with this bug,keeps crashing,even if adjacent building are down.",
+        "title": "BugandIssueThreadv1.0",
+        "pageUrl": "http: //underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page6",
+        "date": "06-12-2013,04: 03PM"
+    },
+    {
+        "text": "I actually have two issues.one has been a constant and theother  is fairly recent.first issue and main one is that the game won't let me purchase fp.I tried a few times already and all I get is an error pop-up saying connection issue.but now the error comes up EVERY time the app is refreshed. second issue is that I can't gain battle points any more. I gained upto lvl 17,but now when I attack for points, the game shows I've gained nothing.",
+        "title": "BugandIssueThreadv1.0",
+        "pageUrl": "http: //underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page6",
+        "date": "06-14-2013,12: 41AM"
+    },
+    {
+        "text": "There's a small typo in one of the event dialogs when ever you get more than one of a card it adds an extra 's'.",
+        "title": "BugandIssueThreadv1.0",
+        "pageUrl": "http: //underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page6",
+        "date": "06-15-2013, 12: 47AM"
+    },
+    {
+        "text": "going mad over here guys  just got my login counter reset AGAIN last night. Had 3 or 4 days left. Please somebody look into this problem. I did unintendedly leave the app running over night. Still I dontseewhythisshouldresetthecounter.Itdoesnt mean I dontlogineveryday, justthatIplayconstantly.Ps: Ididpressthehomescreenanditsaid13daysleft",
+        "title": "BugandIssueThreadv1.0",
+        "pageUrl": "http: //underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page6",
+        "date": "06-11-2013, 07: 33AM"
+    },
+    {
+        "text": "Issue Description-Cant change class before entering a war.Im changing it, but when I enter I'm still stuck with the previous one.The one i'vebeen battling with.",
+        "title": "BugandIssueThreadv1.0",
+        "pageUrl": "http: //underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page6",
+        "date": "06-17-2013, 05: 42PM"
+    }
+]

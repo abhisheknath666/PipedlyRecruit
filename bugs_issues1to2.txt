@@ -1,0 +1,146 @@
+[
+    {
+        "text": "Issue Cat: Gameplay. Just a general issue with private bosses going pub. Becomes annoying to the point that it's hard to go heavy on bosses where heavy is good because random people join and knock out a couple of the bosses, nullifying the usefulness of a heavy class. Most of my empire mates are experiencing the same thing. Hope it gets fixed soon!.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-04-2013, 08:11 PM"
+    },
+    {
+        "text": "I just have one tiny bitty issue here I couldn't help but noticed that gifting is working as intended... A little confused here How's 90% gifts lost rate working as intended? Sorry not intended to blame anyone here but that just can't b right, can it?",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-05-2013, 02:30 AM"
+    },
+    {
+        "text": "I am still not receiving a daily reward every day. Also, are daily rewards on a 24-hour clock or per calendar day?",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-05-2013, 05:52 AM"
+    },
+    {
+        "text": "I second all this and even have tested gifting with some people on my ally lists. Here's an example: Sent everyone a ak-47 and one person in my empire didn't receive it (didn't check with others). I sent that same person a diamond by selecting him only. He received the ak-47... That to me shows gifting is flawed. Another example is I know one guy in my empire sends out a ak-47 to all his ally list and asked if I received any. I have not.To me it seems if you wanna gift you have to do it through that persons profile. And sometimes even then that's hit and miss. The gift all doesn't even work properly on castle age either. I noticed there it only sends to like the top 15 people name wise. Which makes me wonder if that's how it is in this game. Which basically defeats the purpose of having a select all/gift all. I'm not complaining or anything, just if gifting is working as intended I'd like to know the intention of gifting . I do love that you guys are working hard to make an excellent game and I absolutely love the game. Just wish gifting worked properly",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-05-2013, 11:40 AM"
+    },
+    {
+        "text": " I do have one trivial problem that annoys me greatly and it also happens on castle age and it regards stamina. When stamina recharges by 1 point it begins the 5 minute countdown again (obviously) but if you try and use the stamina within 4:30 - 5:00 it keeps resetting the timer.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-06-2013, 01:30 AM"
+    },
+    {
+        "text": "inconsistency with Battle rank icons. As you can see from the two images, what my gf sees on her screen, and what I see on my screen are different. We thought that if we just reinstalled the app, the icons would be fixed so we tried doing so. However, all this did was change the icons around so that some ranks changed to the shield shaped icon, and some others changed back to the round numbered icon.Also, the chat icon at the bottom is different for both our phones. Her's shows up with a number letting her know there was a new message in chat, mine doesn't.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-07-2013, 02:51 PM"
+    },
+    {
+        "text": "Issue Description - The health bar for bosses in the empire bosses area is stuck at halfway for all bosses, and that isn't their real health, as seen on the screenshot of my bosses page. The screenshots are probably a month old, but this problem is still here. On a side note, I still have fled bosses stuck on my bosses screen",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-09-2013, 09:09 PM"
+    },
+    {
+        "text": "I'm assuming were supposed to be able to attack allies right? At least I always thought we could. Cause right now I cannot attack one. Is there a grace period after adding allies to where you can't attack them? Cause all it does now is act like its going to load and then never brings up the duel screen. There was also this guy in my empire who said to test hit him and we weren't allies and it did the same thing, acted like it'd load and then no screen for duel came up",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-10-2013, 02:11 AM"
+    },
+    {
+        "text": "This may have done the trick. Thank you. I thought for sure attacking allies was a part of the game too so I was confused as to why the duel screen never showed",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-10-2013, 03:07 AM"
+    },
+    {
+        "text": "Issue Description - I am having an issue (I believe) with the unleash dogs execution. After I got Two Bullets to 100% I moved on to upgrading Unleash Dogs, which worked fine at first. I got it up to 45% then about a week ago it stopped working completely. I figured it was just my low % at first, but a week later and I am 0 for 40, so I think there might be something else going on. Fails in PvP and in Boss Fights. Thanks!",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-10-2013, 04:59 PM"
+    },
+    {
+        "text": " Unfortunately I'm back to the same issue, with nothing helping this time. Says initiating battle like its gonna load and then doesn't and goes back to my news feed. I've force quit the app and cleared my cache. Any other suggestions? ",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-11-2013, 04:13 PM"
+    },
+    {
+        "text": "Actually I think I figured it out. Cause some of my empire members were having the same issue the other day but it kept popping up for me the guy was in the hospital. So I'm guessing sometimes it won't popup and let us know they're in the hospital. I was still able to eventually attack the guy",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0",
+        "date": "04-12-2013, 12:48 AM"
+    },
+    {
+        "text": "Was fixed after reinstalling after the mos recent update. Thanks Airmid! Now another issue, not sure if it's on my end, but recently whenever I'm on wifi at home, whenever I try to duel/war someone, I get a lot of Requesttimedout. but when I switch to my data plan, this doesn't happen. So I thought it might've been a wifi issue. BUT on my other device connected to the same wifi, it doesn't have this same issue. I've tried reinstalling, and resetting my network but to no avail. Any help on this? Thanks ",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-15-2013, 04:59 AM"
+    },
+    {
+        "text": "Music and sound effects will cut out at times, or sometimes not start up with the game at all. I can go adjust sound levels in game, and when I exit, I am left with sound effects but no music. Clearing the app from multitask once or twice usually clears the sound issue. This is new to me on the latest UE app update for IPhone 4S. I am also experiencing a few random crashes, as others have noted, especially during boss fights. Maybe 3 or 4 per day.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-15-2013, 01:28 PM"
+    },
+    {
+        "text": "Description: I got like 2 or 3 daily gifts yesterday. Also, the 9daystilloginbonus! thing popped up, but the day didn't change. I think everytime the app process is started (aka when it is NOT in the multitasking tray and it is started) it is not detecting that I have already claimed my login bonus. I should also mention that I did NOT get more than one daily scratcher.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-15-2013, 07:35 PM"
+    },
+    {
+        "text": "When plus sign (+) is typed, it does not appear in chat. When a less than sign (<) is typed, it does not appear in chat but also removes everything after it as well.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-16-2013, 08:07 PM"
+    },
+    {
+        "text": " I didn't get credit for the two chests I recently built. The first one worked fine, but I built two more and it still says I only have 1.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-18-2013, 07:59 PM"
+    },
+    {
+        "text": "My empire mates are not able to enter eve. Reinstalled and cleared all apps etc still no dice.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-20-2013, 06:57 PM"
+    },
+    {
+        "text": "Tonka, it has to do with the LT fix the devs put out. The stat cap was changed, so your LT will keep on leveling until it reaches the new cap. You should get a message when you level your LT, what the max level is.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-20-2013, 08:03 PM"
+    },
+    {
+        "text": "My Sin is Level 36/36, but she keeps gaining levels and her stats keep increasing.The level cap is the same, but the stats were changed. So all existing LTs before the fix will have this issue. Just simply keep leveling the LT until you get the message that the level is maxed, don't go by what you see now. (You can tell the LT is maxed when that bar on top the picture that shows the level is completely filled blue).",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-20-2013, 08:21 PM"
+    },
+    {
+        "text": "Right but what's up with these  and I'm 100% serious my fox (also on this thread) it is not correct. I'd like it looked at if possible",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-24-2013, 03:58 PM"
+    },
+    {
+        "text": "Any info on when gifting will be fixed? My whole empire is still having problems. It seems the only way to make it work reliably is to only choose 1 person at a time and that just isn't practical.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "04-27-2013, 07:52 PM"
+    },
+    {
+        "text": "Ever since the ghost message where it said we had a message but didnt I've noticed now that sometimes it's slow showing me I have a message. Like ill see it in the news feed but it takes a while for it to show 1 in the chat pull up area",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "05-10-2013, 03:20 AM"
+    },
+    {
+        "text": "The more link in news feed always opens or tries to open only the latest message. ie. clicking the sixth more link opens the first item if there is some content hidden. If it is fully shown I guess that it still tries to open it.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page2",
+        "date": "05-11-2013, 12:10 PM"
+    }
+]

@@ -1,0 +1,140 @@
+[
+    {
+        "text": "Empire chat has some issues. They started today. The feed is not always updating when you post a message. It's like it almost works but not quite...",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-17-2013, 11:19 PM"
+    },
+    {
+        "text": "Just noticed that at least on iPad the chat overlay doesn't update when I post a message, but I can see through the overlay that the chat preview updates ok. When other Empire mates post their updates show up ok, but my messages only appear after full refresh, ie. closing and opening the overlay.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-18-2013, 07:18 PM"
+    },
+    {
+        "text": "Several empires are being credited 5 wars a day within a 24 hr period. These empires post an incredible 150 wars a month. The leaderboard means nothing if these empires get 2 wins for 1 war fought... What are we fighting for then? I posted in General Discussion but no devs respond to that thread... I'm not asking u guys to fix it asap coz I know u are pretty busy and are working hard. But at least give us a response... Just like tell me u are aware of this problem and are working on it. That's all I'm asking for. ",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-18-2013, 08:43 PM"
+    },
+    {
+        "text": "Yes sir I've taken screenshots in game. Empire A(not mentioning the name but ppl know I'm not targetting them.) went from 209-141 to 211-144 from 2 pm Friday to 2 pm Saturday. Empire B 207-142 to 209-145... They both went 2-3. One of their matches was credited twice but only their member can tell u what their real record was during that 24 hrs. I don't know how to post pictures here but anybody can check that on your own.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-18-2013, 09:25 PM"
+    },
+    {
+        "text": "Are you on PC or mobile ? If pc just upload to imageshack.com then tranfer or you can upload screenshot's using top panel (4th icon from right while under replywindow If mobile download mercuryorpuffin to allow img upload ? I think lol Good Luck. Edit* If a fail, just email me and I'll load for you.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-18-2013, 09:31 PM"
+    },
+    {
+        "text": "I'm battle rank 14 and now when I look at the home screen, instead of seeing how many points I have towards my next rank, it just says Battleotherplayersforrank Did the developers take that away or is my app just being dumb?",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-23-2013, 10:40 PM"
+    },
+    {
+        "text": "It means you lost too many battles, therefore, too many points and you are under what you should be. Keep fighting and when you have the correct amount of points for your rank it will show you your points again",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-23-2013, 11:15 PM"
+    },
+    {
+        "text": "This morning I discovered that I can no longer delete messages on my Wall? Please fix this. Thank you!",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-24-2013, 03:39 PM"
+    },
+    {
+        "text": "Our chat is controlled by 3rd party software and issues regarding delays in posted messages are not within our control",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "5-24-2013, 06:28 PM"
+    },
+    {
+        "text": "Thank u Manimal.I think u are right, it's happening to a lot of empires but for some reason only a handful of empires get really huge number of wars they didn't fight...I suspect it's because they constantly change their war times to b able to fight 4 wars a day, because I know some ppl in those empires and coincidently those with 150 wars credited a month are those who always fight 4 wars a day. If u want u can check the General Discussion there's a thread called Howcouldsomeempiresfight150warsamonth?... That was how I first spotted something might b wrong coz in the month of April they fought 150 wars. Thank u and hope u guys find out what's going on and fix it soon.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page3",
+        "date": "05-24-2013, 08:55 PM"
+    },
+    {
+        "text": "Hi, I updated our empires battletimes and I tried to add a second battletime(we had only one time selected). How ever, it decided to pick the two battles I did not choose, instead of the two I actually selected. As a result I now have some pretty pissed Empire members as I couldn't switch it back. It says that your battles will be resolved at 12.00 utc. How ever I could not change it back at 11.45. Am I doing it wrong or is there some issues with this thing?",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "05-25-2013, 12:26 AM"
+    },
+    {
+        "text": "You are doing something wrong. I understand it says it only updates 1x per day, and I understand how this is stupid for us to continue telling you, but in reality it updates every minute. Not sure what you did when changing times or if someone else in your empire also changed times etc BUT... to change times you should ignore the green squares and put a check beside all of the times you would like to fight.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "05-25-2013, 12:55 AM"
+    },
+    {
+        "text": "Progress in some class abilities have been lost. Heavy Weapons class, collateral damage ability was reset.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "05-29-2013, 03:03 PM"
+    },
+    {
+        "text": "Collateral Damage is a new class power that was only introduced last night. Maybe you are confusing it with Demolition?",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "05-29-2013, 07:39 PM"
+    },
+    {
+        "text": "My ipad ( with retina ) keyboard doesn't work in game anymore for UE after new update. My iphone 5 still works fine. With my ipad, i cant chat, deposit money or do anything that requires keyboard. Major Bug! I deleted app and re-installed but the keyboard still didn't work for ipad in game.Also, the crashes are more constant now.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "05-30-2013, 05:49 AM"
+    },
+    {
+        "text": "Im displeased with this game. About 2 weeks ago when i tried to log in my account was gone. Whether it was hacked or given to someone else idk. I emailed support got no help. It happened to a friend of mine at the same time. He got his back 2 days later! That was 2 weeks ago. Now fast forward to today I updated the app with my other device and that account was no longer there. Instead a level 15 account. I have received absolutely no help in retrieving my 2 accounts. The first a level 70 and the second 73!",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "05-30-2013, 11:29 PM"
+    },
+    {
+        "text": " I just received 3 stamina refills from a scratcher and I can't refill without spending more money. Can someone please email me regarding this issue: bburghdorf@gmail.com",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "06-01-2013, 01:19 AM"
+    },
+    {
+        "text": "Why is it that after the upgrade I no longer Can follow my progress on my rank when I fight? And no longer can rank up? Tried deleting the app but didnt help",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "06-02-2013, 04:46 PM"
+    },
+    {
+        "text": "Hi, there actually is a bug in selecting battle times that I can reproduce. When I select only the 12 am battle it selects the 12 pm battle. And vice versa. The 6 a'clock times work as they should.It's not that bad when you know how it works. But it's definitely not working as it should.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "06-03-2013, 06:25 AM"
+    },
+    {
+        "text": "One bug I found is that sometimes the tiles up top on the screen (health, money, stamina, energy) will oftentimes get stuck with a 50% transparent white square on top of them. For example, when you click them they turn that white-ish color for a second to show that your click has been registered -- sometimes when I open up the app it permanently has this square on it until I touch it.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "06-03-2013, 11:56 PM"
+    },
+    {
+        "text": "Another bug that I found is that oftentimes, an extra error message will pop up when a chat error occurs. Whether this chat error is due to the fact that it has been less than 5 seconds since the last message or that toomanypeoplearechatting (upgrade the server >.<), and extra error pops up after that. The error reads ERRORRETRIEVINGCHATDATA. I feel like this code was probably left in accidentally, if maybe there was a point where that one error message covered everything until the 5 seconds one and the other one were added.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "06-04-2013, 12:00 AM"
+    },
+    {
+        "text": "Issue: gameplay/pvp. For the last 8 hours, I haven't been able to see who's been attacking me. The last one that shows up on my feed was from 6 hrs ago, previous to that is 15hrs ago. I just watched my health go from full to zero, checked my news feed, hoping to see who used 20 stamina to kill me, and those two are still there. Not the first time this has happened. Normally, I remove a few of the people from the feed and the rest appear. Not the case this time. Any suggestions?",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "06-04-2013, 06:12 AM"
+    },
+    {
+        "text": "Not much of a big issue but I noticed the ipad update doesn't display the game using the entire screen. Still has a border on the sides just like when using the 2x iPhone version. I deleted the game and reinstalled but still displays the same. Does it matter that this is happening on a ipad 4 retina? Different screen res, ect.",
+        "title": "Bug and Issue Thread v1.0",
+        "pageUrl": "http://underworldempireforums.com/showthread.php?1877-Bug-and-Issue-Thread-v1-0/page4",
+        "date": "06-06-2013, 08:10 AM"
+    }
+]
