@@ -30,12 +30,9 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(%give up%)'
-and position('give up' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('give up' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('give up' in c.forum_post))) > -200
-group by a.title
+--and
+--c.forum_post similar to '(%give up%)'
+ group by a.title
 having count(*) > 1
 union  all
 select
@@ -58,67 +55,8 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(%abandon%)'
-and position('abandon' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('abandon' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('abandon' in c.forum_post))) > -200
-group by a.title
-having count(*) > 1
-union all
-select
-initcap(a.title) as reason
-,count(*) as count
-,row_number() OVER (ORDER BY count(*) desc) as row_num
-from 
- pipedlyapp_semantriatheme a
-,pipedlyapp_semantriaitem b
-, pipedlyapp_scrapinghubitem c
-where
-a.document_id_id= b.id
-and
-b.document_id_id=c.id
-and
-a.title not like '%20%'
- and
- b.sentiment_polarity = 1
- and
- char_length(a.title)>2
- and
-a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(%discontinue%)'
-and position('discontinue' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('discontinue' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('discontinue' in c.forum_post))) > -200
-group by a.title
-having count(*) > 1
-union  all
-select
-initcap(a.title) as reason
-,count(*) as count
-,row_number() OVER (ORDER BY count(*) desc) as row_num
-from 
- pipedlyapp_semantriatheme a
-,pipedlyapp_semantriaitem b
-, pipedlyapp_scrapinghubitem c
-where
-a.document_id_id= b.id
-and
-b.document_id_id=c.id
-and
-a.title not like '%20%'
- and
- b.sentiment_polarity = 1
- and
- char_length(a.title)>2
- and
-a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(% quit %)'
-and position('quit' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('quit' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('quit' in c.forum_post))) > -200
+--and
+-- c.forum_post similar to '(%abandon%)'
 group by a.title
 having count(*) > 1
 union all
@@ -142,11 +80,55 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 a.title not in ('View Articles','Matt','Mark','Lucus')
+-- to '(%discontinue%)'
+group by a.title
+having count(*) > 1
+union  all
+select
+initcap(a.title) as reason
+,count(*) as count
+,row_number() OVER (ORDER BY count(*) desc) as row_num
+from 
+ pipedlyapp_semantriatheme a
+,pipedlyapp_semantriaitem b
+, pipedlyapp_scrapinghubitem c
+where
+a.document_id_id= b.id
 and
-c.forum_post similar to '(%stop playing%)'
-and position('stop playing' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('stop playing' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('stop playing' in c.forum_post))) > -200
+b.document_id_id=c.id
+and
+a.title not like '%20%'
+ and
+ b.sentiment_polarity = 1
+ and
+ char_length(a.title)>2
+ and
+a.title not in ('View Articles','Matt','Mark','Lucus')
+-- to '(% quit %)'
+group by a.title
+having count(*) > 1
+union all
+select
+initcap(a.title) as reason
+,count(*) as count
+,row_number() OVER (ORDER BY count(*) desc) as row_num
+from 
+ pipedlyapp_semantriatheme a
+,pipedlyapp_semantriaitem b
+, pipedlyapp_scrapinghubitem c
+where
+a.document_id_id= b.id
+and
+b.document_id_id=c.id
+and
+a.title not like '%20%'
+ and
+ b.sentiment_polarity = 1
+ and
+ char_length(a.title)>2
+ and
+a.title not in ('View Articles','Matt','Mark','Lucus')
+-- to '(%stop playing%)'
 group by a.title
 having count(*) > 1
 union all
@@ -170,11 +152,7 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(%give up%)'
-and position('give up' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('give up' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('give up' in c.forum_post))) > -200
+-- to '(%give up%)'
 group by a.title
 having count(*) > 1
 union  all
@@ -198,11 +176,7 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(%abandon%)'
-and position('abandon' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('abandon' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('abandon' in c.forum_post))) > -200
+-- to '(%abandon%)'
 group by a.title
 having count(*) > 1
 union all
@@ -226,11 +200,7 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(%discontinue%)'
-and position('discontinue' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('discontinue' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('discontinue' in c.forum_post))) > -200
+-- to '(%discontinue%)'
 group by a.title
 having count(*) > 1
 union  all
@@ -254,11 +224,7 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(% quit %)'
-and position('quit' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('quit' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('quit' in c.forum_post))) > -200
+-- to '(% quit %)'
 group by a.title
 having count(*) > 1
 union all
@@ -282,11 +248,7 @@ a.title not like '%20%'
  char_length(a.title)>2
  and
 a.title not in ('View Articles','Matt','Mark','Lucus')
-and
-c.forum_post similar to '(%stop playing%)'
-and position('stop playing' in c.forum_post) >0
-and ((position(a.title in c.forum_post)) - (position('stop playing' in c.forum_post))) < 200 
-and ((position(a.title in c.forum_post)) - (position('stop playing' in c.forum_post))) > -200
+-- to '(%stop playing%)'
 group by a.title
 having count(*) > 1
 order by count desc)a 
